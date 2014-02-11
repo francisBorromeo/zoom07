@@ -5,14 +5,14 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:prcc="http://java.sun.com/jsf/composite/prcomponents" 
       xmlns:p="http://primefaces.org/ui"
-	  xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core">
     <ui:composition template="/templates/prospectLayout2.xhtml">
         <ui:define name="top">
             #{bundle.Main}
         </ui:define>
         <ui:define name="content"> 
             <h:form>
-				<f:event type="preRenderView" listener="#{prospectBean.init}"/>
+                <f:event type="preRenderView" listener="#{prospectBean.init}"/>
                 <h4> Prospect List </h4>
                 <p:dataTable var="pList" value="#{prospectBean.prospectModel}" scrollRows="20"  
                              scrollable="true" liveScroll="true" style="width: 640px"
@@ -31,10 +31,10 @@
                     </p:column>
                 </p:dataTable>
                 <br></br>
-				<p:commandButton value="Print All" action="/xhtml/printAllProspect.xhtml?faces-redirect=true" ajax="false"/>
-				<p:commandButton value="View " action="/xhtml/viewProspect.xhtml?faces-redirect=true" ajax="false"/>
-				<p:commandButton value="Add" action="/xhtml/addProspect.xhtml?faces-redirect=true" ajax="false"/>
-				<p:commandButton value="Encode Efforts" action="/xhtml/addEffort.xhtml?faces-redirect=true" ajax="false"/>
+                <p:commandButton value="Print All" action="/xhtml/printAllProspect.xhtml?faces-redirect=true" ajax="false"/>
+                <p:commandButton value="View " action="/xhtml/viewProspect.xhtml?faces-redirect=true" ajax="false"/>
+                <p:commandButton value="Add" action="/xhtml/addProspect.xhtml?faces-redirect=true" ajax="false"/>
+                <p:commandButton value="Encode Efforts" action="/xhtml/addEffort.xhtml?faces-redirect=true" ajax="false"/>
             </h:form>
         </ui:define>
     </ui:composition>

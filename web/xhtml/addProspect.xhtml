@@ -15,7 +15,7 @@
                 <f:event type="preRenderView" listener="#{prospectBean.init}"/>
                 <prcc:prospectForm2 prospect="#{prospectBean.prospect}" 
                                     canNotInput="false"
-									isEdit="false"/>
+                                    isEdit="false"/>
                 <h4> Prospect List </h4>
                 <p:dataTable var="pList" value="#{prospectBean.prospectModel}" scrollRows="20"  
                              scrollable="true" liveScroll="true" style="width: 640px"
@@ -35,11 +35,11 @@
                 </p:dataTable>
                 <br></br>
                 <p>
-					<span style="margin-left: 640px;">
+                    <span style="margin-left: 640px;">
                         <p:commandButton value="Save " action="#{prospectBean.save()}" ajax="false"/>
                         <p:commandButton value="Cancel" action="/xhtml/mainProspect.xhtml" immediate="true" ajax="false"/>
                     </span>
-				</p>
+                </p>
             </h:form>
         </ui:define>
     </ui:composition>
