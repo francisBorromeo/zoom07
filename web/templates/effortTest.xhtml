@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="docroot/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="docroot/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <title>Efforts</title>
+    </h:head>
+    <h:body>
+        <div id="top" class="top">
+            <ui:insert name="top">Top
+                <ui:include src="web/ProspectMessages.properties"/> 
+            </ui:insert>
+        </div>
+        <div id="content" class="center_content">
+            <ui:insert name="content">Content</ui:insert>
+            <h:form>
+                <f:event type="preRenderView" listener="#{prospectBean.init}"/>
+                <br/>
+                You selected :  #{prospectBean.selectedProspect.prospectNo}
+                <p>
+                    <span style="margin-left:15px;">
+                        <h:outputLabel value="Prospect List"/></span>
+                    <br/>
+                    <span style="margin-left:15px;">
+                        <f:ajax event="click" listener="prospectBean.pList" execute="@this"  render="@form"/>
+                        <h:selectOneListbox id="pList" value="#{prospectBean.selectedProspect.prospectNo}" >
+                            <f:selectItems value="#{prospectBean.prospectList}"  
+                                           var="pros"  itemLabel="#{pros.lastName}, #{pros.firstName} #{pros.middleName} #{pros.prospectNo}" 
+                                           itemValue="#{pros}"/>
+                        </h:selectOneListbox>
+                    </span>
+                </p>
+                You selected :  #{prospectBean.selectedProspect}
+                <br/>
+                You selected :  #{prospectBean.selectedProspect.lastName}
+                <br/>
+            </h:form>
+        </div>
+    </h:body>
+</html>

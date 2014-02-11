@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:prcc="http://java.sun.com/jsf/composite/prcomponents" 
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/templates/prospect.xhtml">
+        <ui:define name="top">
+            #{bundle.Edit}
+        </ui:define>
+        <ui:define name="content">
+            <h:form>
+                <f:event type="preRenderView" listener="#{prospectBean.init}"/>
+                <prcc:prospectForm prospect="#{prospectBean.prospect}" 
+                                   canNotInput="true" />
+                <p>
+                    <span style="margin-left:15px;">
+                        <h:outputLabel value="Prospect List"/></span>
+                    <br></br>
+                    <span style="margin-left:15px;">
+                        <h:selectOneListbox id="recordlist" disabled="false" readonly="false" style=" height: 116px; width: 30%;">
+                            <f:selectItems value="#{prospectBean.prospectList}"  
+                                           var="pList"  itemLabel="#{pList.lastName}, #{pList.firstName} #{pList.middleName}" 
+                                           itemValue="#{pList}"/>
+                        </h:selectOneListbox>
+                    </span>
+                </p>
+                
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

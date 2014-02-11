@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:body>
+        <h2>Confirmation Page</h2>
+        <h:panelGrid columns="2"
+                     columnClasses="rightalign-bold,normal">
+            <h:outputText value="Date Added: "/>
+            <h:outputText
+                value="#{prospectBean.prospect.prosDate}" />
+            <h:outputText value="Last Name:"/>
+            <h:outputText value="#{prospectBean.prospect.lastName}" />
+            <h:outputText value="First Name:"/>
+            <h:outputText value="#{prospectBean.prospect.firstName}" />
+            <h:outputText value="Middle Name:"/>
+            <h:outputText value="#{prospectBean.prospect.middleName}" />
+            <h:outputText value="Birthdate:"/>
+            <h:outputText value="#{prospectBean.prospect.birthdate}" />
+            <h:outputText value="Gender:"/>
+            <h:outputText value="#{prospectBean.prospect.gender}"/>
+            <h:outputText value="Nationality:"/>
+            <h:outputText value="#{prospectBean.prospect.nationality}" />
+            <h:outputText value="Contact Number:"/>
+            <h:outputText value="#{prospectBean.prospect.contactNumber}" />
+            <h:outputText value="Length of Stay:"/>
+            <h:outputText value="#{prospectBean.prospect.lengthOfStay}" />
+            <h:outputText value="Occupation:"/>
+            <h:outputText value="#{prospectBean.prospect.occupation}" />
+            <h:outputText value="Street Name:"/>
+            <h:outputText value="#{prospectBean.prospect.street}" />
+            <h:outputText value="Barangay:"/>
+            <h:outputText value="#{prospectBean.prospect.barangay}" />
+            <h:outputText value="City/Municipality:"/>
+            <h:outputText value="#{prospectBean.prospect.cityMun}" />
+        </h:panelGrid>
+    </h:body>
+</html>

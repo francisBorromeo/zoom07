@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.1"
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
+    <application>
+        <resource-bundle>
+            <base-name>web.ProspectMessages</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <locale-config>
+            <default-locale>en</default-locale>
+            <supported-locale>ph</supported-locale>
+        </locale-config>
+    </application>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>mainProspect</from-outcome>
+			<to-view-id>/xhtml/mainProspect.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>addProspect</from-outcome>
+			<to-view-id>/xhtml/addProspect.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>editProspect</from-outcome>
+			<to-view-id>/xhtml/editProspect.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>deleteProspect</from-outcome>
+			<to-view-id>/xhtml/deleteProspect.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>viewProspect</from-outcome>
+			<to-view-id>/xhtml/viewProspect.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>printProspect</from-outcome>
+			<to-view-id>/xhtml/printProspect.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>addEffort</from-outcome>
+			<to-view-id>/xhtml/addEffort.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+</faces-config>

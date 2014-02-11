@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:aui="http://liferay.com/faces/aui">
+    <ui:composition template="/templates/prospectLayout2.xhtml">
+        <ui:define name="top">
+            Encode Recruitment Effort
+        </ui:define>
+        <ui:define name="content">
+            <h:form id="encodeEffortForm">
+				<f:event type="preRenderView" listener="#{prospectBean.init}"/>
+				<aui:fieldset>
+					<h:outputText value="Prospect List"/>
+					<p:dataTable id="prosListEffort"
+								 value="#{prospectBean.prospectModel}"
+								 var="prospect"
+								 rowKey="#{prospect.prospectNo}"
+								 sortBy="#{prospect.lastName}"
+								 sortFunction="single"
+								 scrollable="true"
+								 scrollRows="20"
+								 scrollHeight="150"
+								 style="width: 480px"
+								 liveScroll="true"
+								 selectionMode="single"
+								 selection="#{prospectBean.selectedProspect}"
+								 filteredValue="#{prospectBean.filteredProspectList}">
+						<p:ajax event="rowSelect"
+								async="true"
+								update=":encodeEffortForm"/>
+						<p:ajax event="rowUnselect"
+								async="true"
+								listener="#{prospectBean.onRowUnselect}"
+								update=":encodeEffortForm"/>
+						<p:column headerText="Prospect No."
+								  style="width: 10%"
+								  filterBy="#{prospect.prospectNo}"
+								  filterMatchMode="contains">
+							<h:outputText value="#{prospect.prospectNo}" />
+						</p:column>
+						<p:column headerText="Last Name"
+								  style="width: 30%"
+								  filterBy="#{prospect.lastName}"
+								  filterMatchMode="contains"
+								  filterMaxLength="20">
+							<h:outputText value="#{prospect.lastName}" />
+						</p:column>
+						<p:column headerText="First Name"
+								  style="width: 30%"
+								  filterBy="#{prospect.firstName}"
+								  filterMatchMode="contains"
+								  filterMaxLength="25">
+							<h:outputText value="#{prospect.firstName}" />
+						</p:column>
+						<p:column headerText="Middle Name"
+								  style="width: 30%"
+								  filterBy="#{prospect.middleName}"
+								  filterMatchMode="contains"
+								  filterMaxLength="20">
+							<h:outputText value="#{prospect.middleName}" />
+						</p:column>
+					</p:dataTable>
+					<aui:field >
+						<aui:column>
+							<h:outputText id="lastNameText"
+										  style=" font-size: 2em"
+										  value="#{prospectBean.selectedProspect.lastName},"
+										  rendered="#{not empty prospectBean.selectedProspect.lastName}"/>
+						</aui:column>
+						<aui:column>
+							<h:outputText id="firstNameText"
+										  style=" font-size: 2em"
+										  value="#{prospectBean.selectedProspect.firstName}"/>
+						</aui:column>
+						<aui:column>
+							<h:outputText id="middleNameText"
+										  style=" font-size: 2em"
+										  value="#{prospectBean.selectedProspect.middleName}"/>
+						</aui:column>
+					</aui:field>
+				</aui:fieldset>
+				<aui:fieldset>
+					
+					<h:outputText value="Narrative"/>
+					<aui:field>
+						<p:editor id="effortSummary" value="#{null}"/>
+					</aui:field>
+					<aui:field>
+						<p:panelGrid columns="3">
+							<p:selectBooleanCheckbox value="#{prospectBean.willing}">
+								<p:ajax async="true"
+										update=":encodeEffortForm"/>
+							</p:selectBooleanCheckbox>
+							<p:outputLabel for="rating1" value="Willingness, receptiveness, and interest."/>
+							<p:selectOneRadio id="rating1" value="#{prospectBean}" disabled="#{not prospectBean.willing}">
+								<f:selectItem itemLabel="1" itemValue="1"/>
+								<f:selectItem itemLabel="2" itemValue="2"/>
+								<f:selectItem itemLabel="3" itemValue="3"/>
+								<f:selectItem itemLabel="4" itemValue="4"/>
+								<f:selectItem itemLabel="5" itemValue="5"/>
+							</p:selectOneRadio>
+							<p:selectBooleanCheckbox value="#{prospectBean.understanding}">
+								<p:ajax async="true"
+										update=":encodeEffortForm"/>
+							</p:selectBooleanCheckbox>
+							<h:outputText value="Understanding about cooperative."/>
+							<h:outputText value=" "/>
+							<h:outputText value=" "/>
+							<p:outputLabel for="rating2-1" value="Mutual help and cooperative movement."/>
+							<p:selectOneRadio id="rating2-1" disabled="#{not prospectBean.understanding}">
+								<f:selectItem itemLabel="1" itemValue="1"/>
+								<f:selectItem itemLabel="2" itemValue="2"/>
+								<f:selectItem itemLabel="3" itemValue="3"/>
+								<f:selectItem itemLabel="4" itemValue="4"/>
+								<f:selectItem itemLabel="5" itemValue="5"/>
+							</p:selectOneRadio>
+							<h:outputText value=" "/>
+							<p:outputLabel for="rating2-2" value="Introduction to cooperative principles."/>
+							<p:selectOneRadio id="rating2-2" disabled="#{not prospectBean.understanding}">
+								<f:selectItem itemLabel="1" itemValue="1"/>
+								<f:selectItem itemLabel="2" itemValue="2"/>
+								<f:selectItem itemLabel="3" itemValue="3"/>
+								<f:selectItem itemLabel="4" itemValue="4"/>
+								<f:selectItem itemLabel="5" itemValue="5"/>
+							</p:selectOneRadio>
+							<h:outputText value=" "/>
+							<p:outputLabel for="rating2-3" value="Cooperative Values."/>
+							<p:selectOneRadio id="rating2-3" disabled="#{not prospectBean.understanding}">
+								<f:selectItem itemLabel="1" itemValue="1"/>
+								<f:selectItem itemLabel="2" itemValue="2"/>
+								<f:selectItem itemLabel="3" itemValue="3"/>
+								<f:selectItem itemLabel="4" itemValue="4"/>
+								<f:selectItem itemLabel="5" itemValue="5"/>
+							</p:selectOneRadio>
+							<p:selectBooleanCheckbox value="#{prospectBean.motivated}">
+								<p:ajax async="true"
+										update=":encodeEffortForm"/>
+							</p:selectBooleanCheckbox>
+							<p:outputLabel for="rating3" value="Inspiration and motivation."/>
+							<p:selectOneRadio id="rating3" disabled="#{not prospectBean.motivated}">
+								<f:selectItem itemLabel="1" itemValue="1"/>
+								<f:selectItem itemLabel="2" itemValue="2"/>
+								<f:selectItem itemLabel="3" itemValue="3"/>
+								<f:selectItem itemLabel="4" itemValue="4"/>
+								<f:selectItem itemLabel="5" itemValue="5"/>
+							</p:selectOneRadio>
+							<p:selectBooleanCheckbox value="#{prospectBean.social}">
+								<p:ajax async="true"
+										update=":encodeEffortForm"/>
+							</p:selectBooleanCheckbox>
+							<p:outputLabel for="rating4" value="Social standing."/>
+							<p:selectOneRadio id="rating4" disabled="#{not prospectBean.social}">
+								<f:selectItem itemLabel="1" itemValue="1"/>
+								<f:selectItem itemLabel="2" itemValue="1"/>
+								<f:selectItem itemLabel="3" itemValue="1"/>
+								<f:selectItem itemLabel="4" itemValue="1"/>
+								<f:selectItem itemLabel="5" itemValue="1"/>
+							</p:selectOneRadio>	
+							<p:selectBooleanCheckbox value="#{prospectBean.norating}">
+								<p:ajax async="true"
+										update=":encodeEffortForm"/>
+							</p:selectBooleanCheckbox>
+							<h:outputText value="No rating."/>
+						</p:panelGrid>
+					</aui:field>
+				</aui:fieldset>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

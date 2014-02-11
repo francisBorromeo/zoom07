@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:prcc="http://java.sun.com/jsf/composite/prcomponents" 
+      xmlns:p="http://primefaces.org/ui"
+	  xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="/templates/prospectLayout2.xhtml">
+        <ui:define name="top">
+            #{bundle.Main}
+        </ui:define>
+        <ui:define name="content"> 
+            <h:form>
+				<f:event type="preRenderView" listener="#{prospectBean.init}"/>
+                <h4> Prospect List </h4>
+                <p:dataTable var="pList" value="#{prospectBean.prospectModel}" scrollRows="20"  
+                             scrollable="true" liveScroll="true" style="width: 640px"
+                             scrollHeight="150" id="prospectList" >
+                    <p:column headerText="Prospect No." style="width: 10%" >
+                        <h:outputText value="#{pList.prospectNo}" />
+                    </p:column>
+                    <p:column headerText="Last Name" style="width: 30%" >
+                        <h:outputText value="#{pList.lastName}" />
+                    </p:column>
+                    <p:column headerText="First Name"  style="width: 30%">
+                        <h:outputText value="#{pList.firstName}" />
+                    </p:column>
+                    <p:column headerText="Middle Name"  style="width: 30%">
+                        <h:outputText value="#{pList.middleName}" />
+                    </p:column>
+                </p:dataTable>
+                <br></br>
+				<p:commandButton value="Print All" action="/xhtml/printAllProspect.xhtml?faces-redirect=true" ajax="false"/>
+				<p:commandButton value="View " action="/xhtml/viewProspect.xhtml?faces-redirect=true" ajax="false"/>
+				<p:commandButton value="Add" action="/xhtml/addProspect.xhtml?faces-redirect=true" ajax="false"/>
+				<p:commandButton value="Encode Efforts" action="/xhtml/addEffort.xhtml?faces-redirect=true" ajax="false"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

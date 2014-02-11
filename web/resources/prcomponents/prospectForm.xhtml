@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <composite:interface>
+        <composite:attribute name="prospect"/>
+        <composite:attribute name="canNotInput" />
+    </composite:interface>
+    <composite:implementation>
+        <span style="margin-left:388px;">
+            <h:outputLabel value="*Date Added  : " for="prosDate" />
+            <h:inputText id="prosDate" size="10" 
+                         required="true"
+                         readonly="#{cc.attrs.canNotInput}"
+                         value="#{cc.attrs.prospect.prosDate}">
+                <f:convertDateTime type="date" pattern="MM/dd/yyyy" />
+            </h:inputText></span>
+        <h:message for ="prosDate"/>
+        <br/><br/>
+        <p>
+            <span style="margin-left:15px;">
+                <h:inputText id ="lastName" label="Surname" size="15" 
+                             required="true"
+                             readonly="#{cc.attrs.canNotInput}"
+                             value="#{cc.attrs.prospect.lastName}"/></span>
+            <h:message for="lastName"/>
+            <span style="margin-left:20px;">
+                <h:inputText id="firstName" label="First Name" size="20" 
+                             required="true"
+                             readonly="#{cc.attrs.canNotInput}"
+                             value="#{cc.attrs.prospect.firstName}"/></span>
+            <h:message for="firstName"/>
+            <span style="margin-left:20px;">
+                <h:inputText id="middleName" label ="Middle Name" size="15" 
+                             readonly="#{cc.attrs.canNotInput}"
+                             value="#{cc.attrs.prospect.middleName}"/></span>
+            <br></br>
+            <span style="margin-left:17px;">
+                <h:outputLabel for ="lastName" value="*Surname"/></span>
+            <span style="margin-left:75px;"> 
+                <h:outputLabel for ="firstName" value="*First Name"/></span>
+            <span style="margin-left:91px;"> 
+                <h:outputLabel for="middleName" value="Middle Name"/></span>
+        </p>
+        <p>
+            <span style="margin-left:15px;">
+                <h:inputText id="birthdate" label="Birthdate" size="10"
+                             readonly="#{cc.attrs.canNotInput}"
+                             value="#{cc.attrs.prospect.birthdate}">
+                    <f:convertDateTime type="date" pattern="MM/dd/yyyy" />
+                </h:inputText></span>
+            <span style="margin-left:72px;">
+                <h:selectOneMenu id="gender" label ="Gender" readonly="#{cc.attrs.canNotInput}"
+                                 value="#{cc.attrs.prospect.gender}">
+                    <f:selectItem itemLabel="" itemValue=""/>
+                    <f:selectItem itemLabel="M" itemValue ="M"/>
+                    <f:selectItem itemLabel="F" itemValue="F"/>
+                </h:selectOneMenu>
+            </span>
+            <span style="margin-left:50px;">
+                <h:inputText id="nationality" label="Nationality" size="10" 
+                             required="true"
+                             readonly="#{cc.attrs.canNotInput}"
+                             value="#{cc.attrs.prospect.nationality}"/></span>  
+            <h:message for="nationality"/>
+            <br></br>
+            <span style="margin-left:17px;">
+                <h:outputLabel for="birthdate" value="Birthdate (mm/dd/yyyy)"/></span>
+            <span style="margin-left:37px;">
+                <h:outputLabel for="gender" value="Gender"/></span>
+            <span style="margin-left:53px;">
+                <h:outputLabel for="nationality" value="*Nationality"/></span>
+        </p>
+        <p>
+            <span style="margin-left:15px;">
+                <h:inputText id="contactNumber" label="Contact Number" size="11" 
+                             readonly="#{cc.attrs.canNotInput}"
+                             value="#{cc.attrs.prospect.contactNumber}"/></span>
+            <span style="margin-left:65px;">
+                <h:selectOneMenu id="lengthOfStay" label="Length Of Stay"
+                                 value="#{cc.attrs.prospect.lengthOfStay}"
+                                 readonly="#{cc.attrs.canNotInput}"
+                                 required="true">
+                    <f:selectItem itemLabel="" itemValue=""/>
+                    <f:selectItem itemLabel="True" itemValue = "true"/>
+                    <f:selectItem itemLabel="False" itemValue="false"/>
+                </h:selectOneMenu>
+            </span>
+            <h:message for="lengthOfStay"/>
+            <span style="margin-left:114px;">
+                <h:inputText id="occupation" label="Occupation" size="14" 
+                             readonly="#{cc.attrs.canNotInput}"
+                             value="#{cc.attrs.prospect.occupation}"/></span>
+            <br></br>
+            <span style="margin-left:17px;">
+                <h:outputLabel for="contactNumber" value="Contact Number"/></span>
+            <span style="margin-left:69px;">
+                <h:outputLabel for="lengthOfStay" value="*Length of stay >2 yrs"/></span>
+            <span style="margin-left:64px;">
+                <h:outputLabel value="Occupation"/></span>
+        </p>
+        <p>
+            <span style="margin-left:15px;">
+                <h:inputText id="streetName" label="Street Name" size="40" 
+                             required="true"
+                             readonly="#{cc.attrs.canNotInput}"
+                             value="#{cc.attrs.prospect.street}"/></span>
+            <br></br>
+            <span style="margin-left:15px;">
+                <h:outputLabel for="streetName" value="Street Name"/></span>
+        </p>
+        <p>
+            <span style="margin-left:15px;">
+                <h:inputText id="barangay" label="Barangay" size="15" 
+                             required="true"
+                             readonly="#{cc.attrs.canNotInput}"
+                             value="#{cc.attrs.prospect.barangay}"/></span>
+            <h:message for="barangay"/>
+            <br></br>
+            <span style="margin-left:15px;">
+                <h:outputLabel for="barangay" value="*Barangay"/></span>
+        </p>
+        <p>
+            <span style="margin-left:15px;">
+                <h:inputText id="cityMun" label="City/Municipality" size="15" 
+                             required="true"
+                             readonly="#{cc.attrs.canNotInput}"
+                             value="#{cc.attrs.prospect.cityMun}"/></span>
+            <h:message for="cityMun"/>
+            <br></br>
+            <span style="margin-left:15px;">
+                <h:outputLabel for="cityMun" value="*City/Municipality"/></span>
+        </p>
+    </composite:implementation>
+</html>

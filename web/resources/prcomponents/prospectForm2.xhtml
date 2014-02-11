@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <composite:interface>
+        <composite:attribute name="prospect"/>
+        <composite:attribute name="canNotInput"/>
+		<composite:attribute name="isEdit"/>
+    </composite:interface>
+    <composite:implementation>
+        <h:panelGrid id="prospectPanel" columns="3" cellpadding="150" cellspacing="150" >
+            <h:outputLabel id="prosDateLabel"
+                           for="prosDate" 
+                           value="*Date Added  : " />
+			<p:calendar id="prosDate"
+						value="#{cc.attrs.prospect.prosDate}"
+						pattern="MM/dd/yyyy"
+						yearRange="c-0:c+0"
+						required="true"
+						rendered="#{not cc.attrs.isEdit}"
+						readonlyInput="true"/>
+            <h:outputText value="#{cc.attrs.prospect.prosDate}" style=" font-size:  1.5em" rendered="#{cc.attrs.isEdit}">
+                <f:convertDateTime pattern="MM/dd/yyyy"/>  
+            </h:outputText>
+			<h:message for="prosDate"/>
+            <h:outputLabel id="lastNameLabel"
+                           for ="lastName" 
+                           value="*Surname"/>
+            <p:inputText id ="lastName" 
+						 maxlength="20"
+                         size="15"
+                         value="#{cc.attrs.prospect.lastName}"
+                         label="Surname"
+						 rendered="#{not cc.attrs.canNotInput}"/>
+			<h:outputText value="#{cc.attrs.prospect.lastName}" style=" font-size:  1.5em" rendered="#{cc.attrs.canNotInput}"/>
+            <h:message for="lastName"/>
+            <h:outputLabel id="firstNameLabel" 
+                           for ="firstName" 
+                           value="*First Name"/>
+            <p:inputText id="firstName" 
+						 maxlength="25"
+                         size="20" 
+                         rendered="#{not cc.attrs.canNotInput}"
+                         value="#{cc.attrs.prospect.firstName}"
+                         label="First Name"/>
+			<h:outputText value="#{cc.attrs.prospect.firstName}" style=" font-size:  1.5em" rendered="#{cc.attrs.canNotInput}"/>
+            <h:message for="firstName"/>
+            <h:outputLabel id="middleNameLabel" 
+                           for="middleName" 
+                           value="Middle Name"/>
+            <p:inputText id="middleName" 
+						 maxlength="20"
+                         size="15" 
+                         rendered="#{not cc.attrs.canNotInput}"
+                         value="#{cc.attrs.prospect.middleName}"
+                         label="Middle Name"/>
+			<h:outputText value="#{cc.attrs.prospect.middleName}" style=" font-size:  1.5em" rendered="#{cc.attrs.canNotInput}"/>
+            <h:message for="middleName"/>
+            <h:outputLabel id="birthdateLabel" 
+                           for="birthdate" 
+                           value="Birthdate "/>
+            <p:calendar id="birthdate"
+						value="#{cc.attrs.prospect.birthdate}" 
+                        navigator="true"
+						mode="popup" 
+						rendered="#{not cc.attrs.canNotInput}"
+						readonlyInput="true"
+                        pattern="MM/dd/yyyy"
+						yearRange="1900:c-18"/> 
+			<h:outputText value="#{cc.attrs.prospect.birthdate}" style=" font-size:  1.5em" rendered="#{cc.attrs.canNotInput}">
+				<f:convertDateTime pattern="MM/dd/yyyy"/>
+			</h:outputText>
+            <h:message for="birthdate"/>
+            <h:outputLabel id="genderLabel" 
+                           for="gender" 
+                           value="Gender"/>
+            <p:selectOneMenu id="gender" label ="Gender" rendered="#{not cc.attrs.canNotInput}"
+                             value="#{cc.attrs.prospect.gender}">
+                <f:selectItem itemLabel="Male" itemValue ="M"/>
+                <f:selectItem itemLabel="Female" itemValue="F"/>
+            </p:selectOneMenu>
+			<h:outputText value="#{cc.attrs.prospect.gender}" style=" font-size:  1.5em" rendered="#{cc.attrs.canNotInput}"/>
+            <h:message for="gender"/>
+            <h:outputLabel id="nationalityLabel" 
+                           for="nationality" 
+                           value="*Nationality"/>
+            <p:inputText id="nationality" 
+						 maxlength="8"
+                         size="6" 
+                         required="true"
+                         rendered="#{not cc.attrs.canNotInput}"
+                         value="#{cc.attrs.prospect.nationality}"
+                         label="Nationality"/>
+			<h:outputText value="#{cc.attrs.prospect.nationality}" style=" font-size:  1.5em" rendered="#{cc.attrs.canNotInput}"/>
+            <h:message for="nationality"/>
+            <h:outputLabel id="contactNumberLabel" 
+                           for="contactNumber" 
+                           value="Contact Number"/>
+            <p:inputMask id="contactNumber" 
+						 mask="(999)9999999"
+						 maxlength="12"
+                         size="10" 
+                         rendered="#{not cc.attrs.canNotInput}"
+                         value="#{cc.attrs.prospect.contactNumber}"
+                         label="Contact Number"/>
+			<h:outputText value="#{cc.attrs.prospect.contactNumber}" style=" font-size:  1.5em" rendered="#{cc.attrs.canNotInput}"/>
+            <h:message for="contactNumber"/>
+            <h:outputLabel id="lengthOfStayLabel" 
+                           for="lengthOfStay" 
+                           value="*Length of stay "/>
+            <p:selectBooleanButton id="lengthOfStay"
+								   value="#{cc.attrs.prospect.lengthOfStay}" 
+                                   onLabel="More than 2 years"
+								   offLabel="Less than 2 years"
+                                   required="true"
+								   rendered="#{not cc.attrs.canNotInput}"/>
+			<h:outputText value="#{cc.attrs.prospect.lengthOfStay}" style=" font-size:  1.5em" rendered="#{cc.attrs.canNotInput}"/>
+            <h:message for="lengthOfStay"/>
+            <h:outputLabel id="occupationLabel" 
+                           for="occupation"
+                           value="Occupation"/>
+            <p:inputText id="occupation" 
+						 maxlength="20"
+                         size="17" 
+                         rendered="#{not cc.attrs.canNotInput}"
+                         value="#{cc.attrs.prospect.occupation}"
+                         label="Occupation"/>
+			<h:outputText value="#{cc.attrs.prospect.occupation}" style=" font-size:  1.5em" rendered="#{cc.attrs.canNotInput}"/>
+            <h:message for="occupation"/>
+            <h:outputLabel id="streetNameLabel"
+                           for="streetName" 
+                           value="Street Name" />
+            <p:inputText id="streetName"
+						 label="Street Name"
+						 maxlength="60"
+						 size="40" 
+                         rendered="#{not cc.attrs.canNotInput}"
+                         value="#{cc.attrs.prospect.street}"/>
+			<h:outputText value="#{cc.attrs.prospect.street}" style=" font-size:  1.5em" rendered="#{cc.attrs.canNotInput}"/>
+            <h:message for="streetName"/>
+            <h:outputLabel id="barangayLabel" 
+                           for="barangay" 
+                           value="*Barangay"/>
+            <p:inputText id="barangay"
+						 maxlength="50"
+                         size="30" 
+                         rendered="#{not cc.attrs.canNotInput}"
+                         value="#{cc.attrs.prospect.barangay}"
+                         label="Barangay"/>
+			<h:outputText value="#{cc.attrs.prospect.barangay}" style=" font-size:  1.5em" rendered="#{cc.attrs.canNotInput}"/>
+            <h:message for="barangay"/>
+            <h:outputLabel id="cityMunLabel" 
+                           for="cityMun" 
+                           value="*City/Municipality    ."/>
+            <p:inputText id="cityMun"
+						 maxlength="50"
+						 size="30" 
+                         rendered="#{not cc.attrs.canNotInput}"
+                         value="#{cc.attrs.prospect.cityMun}"
+                         label="City/Municipality"/>
+			<h:outputText value="#{cc.attrs.prospect.cityMun}" style=" font-size:  1.5em" rendered="#{cc.attrs.canNotInput}"/>
+            <h:message for="cityMun"/>
+            <h:outputText value="&#160;" />
+        </h:panelGrid>
+    </composite:implementation>
+</html>

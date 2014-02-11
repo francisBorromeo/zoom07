@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:prcc="http://java.sun.com/jsf/composite/prcomponents" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+	  xmlns:aui="http://liferay.com/faces/aui">
+
+    <ui:composition template="/templates/prospectLayout2.xhtml">
+        <ui:define name="top">
+            #{bundle.View}
+        </ui:define>
+        <ui:define id="defcontent" name="content"> 
+            <h:form id="viewForm">
+				<f:event type="preRenderView" listener="#{prospectBean.init}"/>
+				<prcc:prospectForm3 id="proderp"
+									canNotInput="true"
+									prospect="#{prospectBean.selectedProspect}"/>
+
+				<h4> Prospect List </h4>
+				<p:dataTable id="prospectList"
+							 value="#{prospectBean.prospectModel}"							 
+							 var="pList"
+							 rowKey="#{pList.prospectNo}"
+							 sortFunction="single"
+							 scrollRows="20"
+							 scrollable="true"
+							 liveScroll="true"
+							 style="width: 640px"
+							 selection="#{prospectBean.selectedProspect}"
+							 filteredValue="#{prospectBean.filteredProspectList}"
+							 selectionMode="single"
+							 scrollHeight="150">
+					<p:ajax event="rowSelect"
+							async="true"
+							update=":viewForm"/>
+					<p:ajax event="rowUnselect"
+							async="true"
+							listener="#{prospectBean.onRowUnselect}"
+							update=":viewForm"/>
+					<p:column headerText="Prospect No."
+							  style="width: 16%"
+							  filterBy="#{pList.prospectNo}"
+							  filterMatchMode="contains">
+						<h:outputText value="#{pList.prospectNo}" />
+					</p:column>
+					<p:column headerText="Last Name"
+							  style="width: 32%"
+							  filterBy="#{pList.lastName}"
+							  filterMatchMode="contains"
+							  filterMaxLength="20">
+						<h:outputText value="#{pList.lastName}" />
+					</p:column>
+					<p:column headerText="First Name"
+							  style="width: 32%"
+							  filterBy="#{pList.firstName}"
+							  filterMatchMode="contains"
+							  filterMaxLength="25">
+						<h:outputText value="#{pList.firstName}" />
+					</p:column>
+					<p:column headerText="Middle Name"
+							  style="width: 32%"
+							  filterBy="#{pList.middleName}"
+							  filterMatchMode="contains"
+							  filterMaxLength="20">
+						<h:outputText value="#{pList.middleName}" />
+					</p:column>
+				</p:dataTable>
+				<h:outputText id="prompttext" value="Select from list of prospects above..." rendered="#{empty prospectBean.selectedProspect.prospectNo}"/><br/>
+				<p:commandButton id="goBack"
+								 value="Go back to main..."
+								 action="#{prospectBean.backToMain}"
+								 ajax="false"
+								 immediate="true"/>
+				<p:commandButton id="editbutton" 
+								 value="Edit "
+								 rendered="#{not empty prospectBean.selectedProspect.prospectNo}"
+								 action="editProspect?faces-redirect=true"/>
+				<p:commandButton id="delbutton"
+								 value="Delete "
+								 rendered="#{not empty prospectBean.selectedProspect.prospectNo}"
+								 action="deleteProspect?faces-redirect=true"/>
+				<p:commandButton id="printbutton"
+								 value="Print "
+								 rendered="#{not empty prospectBean.selectedProspect.prospectNo}"
+								 action="printProspect?faces-redirect=true"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:prcc="http://java.sun.com/jsf/composite/prcomponents"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+	<ui:composition template="/templates/prospectLayout.xhtml">
+		<ui:define name="top">
+			#{bundle.PrintLahat} PT-Something
+		</ui:define>
+		<ui:define name="content">
+			<h:form>
+				<f:event type="preRenderView" listener="#{prospectBean.init}"/>
+				<p:dataList id="proList"
+							value="#{prospectBean.prospectModel}"
+							var="prospect"
+							type="definition">
+					<f:facet name="header">
+						PROSPECT LIST FOR PT-SOMETHING
+					</f:facet>
+					<h:outputText value="#{prospect.lastName}, #{prospect.firstName} #{prospect.middleName}"
+								  style="font-size: 1.5em"/>
+					<f:facet name="description">
+						Birthdate: <h:outputText value="#{prospect.birthdate}" style=" font-weight: bold"><f:convertDateTime pattern="MM/dd/yyyy"/></h:outputText> -- Gender: <h:outputText value="#{prospect.gender}" style=" font-weight: bold"/><br/>
+						Contact #: <h:outputText value="#{prospect.contactNumber}" style=" font-weight: bold"/> -- Occupation: <h:outputText value="#{prospect.occupation}" style=" font-weight: bold"/><br/>
+						Address: <h:outputText value="#{prospect.street} #{prospect.barangay}, #{prospect.cityMun}" style=" font-weight: bold"/><br/><br/>
+					</f:facet>
+				</p:dataList>
+				<p:commandButton value="Print All" type="button">
+					<p:printer target="proList"/>
+				</p:commandButton>
+				<p:commandButton value="Cancel" action="/xhtml/mainProspect.xhtml?faces-redirect=true" immediate="true" ajax="false"/>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</html>

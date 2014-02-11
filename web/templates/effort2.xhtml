@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="docroot/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="docroot/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <title>Efforts</title>
+     </h:head>
+    <h:body>
+        <div id="top" class="top">
+            <ui:insert name="top">Top
+                <ui:include src="web/ProspectMessages.properties"/> 
+            </ui:insert>
+        </div>
+        <div id="content" class="center_content">
+            <ui:insert name="content">Content</ui:insert>
+            <h:form>
+                <span style="margin-left:418px;">
+                    <h:outputLabel value="Date  : " for="sysDate" />
+                    <h:inputText id="sysDateEnc" size="10"  >
+                        <f:convertDateTime type="date" pattern="MM/dd/yyyy" />
+                    </h:inputText></span>
+<!--                    
+                    <h:outputText id="sysDate"  
+                                 value="#{systemdate}">
+                    </h:outputText></span>
+-->
+                <br/>
+                <p>
+                    <span style="margin-left:15px;">
+                        <h:outputLabel value="Prospect List"/></span>
+                    <br/>
+                    <span style="margin-left:15px;">
+                        <h:selectOneListbox id="prospectList" size="5" value="" >
+                            <f:selectItem itemValue="Allanigue" itemLabel="Edmundo Allanigue" />
+                            <f:selectItem itemValue="Mendoza" itemLabel="Angel Mendoza" />
+                            <f:selectItem itemValue="Jose" itemLabel="Enriqueto Jose" />
+                            <f:selectItem itemValue="Santiago" itemLabel="Celedonio Santiago" />
+                            <f:selectItem itemValue="Espiritu" itemLabel="Hortencio Espiritu" />
+                            <f:selectItem itemValue="Cabrera" itemLabel="Laurita Cabrera" />
+                            <f:selectItem itemValue="Santiago2" itemLabel="Teresita Santiago" />
+                            <f:selectItem itemValue="Allanigue2" itemLabel="Benedicto Allanigue" />
+                            <f:selectItem itemValue="Dagal" itemLabel="Gloria Dagal" />
+                            <f:selectItem itemValue="Hernandez" itemLabel="Herminio Hernandez" />
+                        </h:selectOneListbox></span>
+                </p>
+                <p>
+                    <span style="margin-left:15px;">
+                        <h:inputText id ="surname" size="15" 
+                                     required="true"
+                                     value="#{prospectBean.prospect.lastName}"/></span>
+                    <span style="margin-left:20px;">
+                        <h:inputText id="firstName" size="20" 
+                                     required="true"
+                                     value="#{prospectBean.prospect.firstName}"/></span>
+                    <span style="margin-left:20px;">
+                        <h:inputText id="middleName" size="15" 
+                                     value="#{prospectBean.prospect.middleName}"/></span>
+                    <br/>
+                    <span style="margin-left:17px;">
+                        <h:outputLabel for ="surname" value="Surname"/></span>
+                    <span style="margin-left:77px;"> 
+                        <h:outputLabel for ="firstName" value="First Name"/></span>
+                    <span style="margin-left:97px;"> 
+                        <h:outputLabel for="middleName" value="Middle Name"/></span>
+                </p>
+                <span style="margin-left:15px;">
+                    <h:outputLabel value="Select Report Date : " for="rprtDateEnc" />
+                        <h:selectOneListbox id="rprtDateEnc" size="1" value="" >
+                            <f:selectItem itemValue="1" itemLabel="01 January 2013" />
+                            <f:selectItem itemValue="2" itemLabel="02 February 2013" />
+                            <f:selectItem itemValue="3" itemLabel="03 March 2013" />
+                            <f:selectItem itemValue="4" itemLabel="15 March 2013" />
+                            <f:selectItem itemValue="5" itemLabel="20 April 2013" />
+                            <f:selectItem itemValue="6" itemLabel="07 May 2013" />
+                            <f:selectItem itemValue="7" itemLabel="12 May 2013" />
+                            <f:selectItem itemValue="8" itemLabel="13 May 2013" />
+                            <f:selectItem itemValue="9" itemLabel="14 May 2013" />
+                            <f:selectItem itemValue="10" itemLabel="16 May 2013" />
+                        </h:selectOneListbox></span>
+                <br/>
+                <p>
+                    <span style="margin-left:15px;">
+                        <h:outputLabel for="report_dtl" value="Recruitment Effort Narrative"/></span>
+                    <br/>
+                    <span style="margin-left:15px;">
+                        <h:inputTextarea value="dito lalabas ang report" cols="100" rows="10"/></span>
+                    <br/>
+                </p>
+                    <span style="margin-left:120px;">
+                        Category </span>
+                    <span style="margin-left:200px;">
+                        Rating </span>
+                    <br/>
+                    <br/>
+                    <br/>
+                
+                <p>
+                    <span style="margin-left:300px;">
+                        <h:inputText id="ptMem" label="PT member in charge" size="40" 
+                                     required="true"
+                                     value="#{repBean.report.memIdNo}"/></span>
+                    <br/>
+                    <span style="margin-left:360px;">
+                        <h:outputLabel for="ptMem" value="PT Member-in-Charge"/></span>
+                </p>
+                <p><span style="margin-left:386px;">
+                <h:commandButton value=" Print " action="#{prospectBean.end}" />
+                </span></p>
+         </h:form>
+      </div>
+  </h:body>
+</html>

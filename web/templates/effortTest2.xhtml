@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="docroot/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="docroot/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <title>Efforts</title>
+    </h:head>
+    <h:body>
+        <div id="top" class="top">
+            <ui:insert name="top">Top
+                <ui:include src="web/ProspectMessages.properties"/> 
+            </ui:insert>
+        </div>
+        <div id="content" class="center_content">
+            <ui:insert name="content">Content</ui:insert>
+            <h:form>
+                <br/>
+                You selected :  #{prospectBean.selectedProspect.prospectNo}
+                <p>
+                    <span style="margin-left:15px;">
+                        <h:outputLabel value="Prospect List"/></span>
+                    <br/>
+                    <span style="margin-left:15px;">
+                        <h:selectOneListbox id="prospectList" size="5" value="" >
+                            <f:selectItem itemValue="Allanigue" itemLabel="Edmundo Allanigue" />
+                            <f:selectItem itemValue="Mendoza" itemLabel="Angel Mendoza" />
+                            <f:selectItem itemValue="Jose" itemLabel="Enriqueto Jose" />
+                            <f:selectItem itemValue="Santiago" itemLabel="Celedonio Santiago" />
+                            <f:selectItem itemValue="Espiritu" itemLabel="Hortencio Espiritu" />
+                            <f:selectItem itemValue="Cabrera" itemLabel="Laurita Cabrera" />
+                            <f:selectItem itemValue="Santiago2" itemLabel="Teresita Santiago" />
+                            <f:selectItem itemValue="Allanigue2" itemLabel="Benedicto Allanigue" />
+                            <f:selectItem itemValue="Dagal" itemLabel="Gloria Dagal" />
+                            <f:selectItem itemValue="Hernandez" itemLabel="Herminio Hernandez" />
+                        </h:selectOneListbox></span>
+                </p>
+                <p>
+                    <span style="margin-left:15px;">
+                    
+                    <span style="margin-left:15px;">
+                        <h:selectOneListbox id="pList" value="#{prospectBean.selectedProspect.prospectNo}" converter="#{objStrConv}">
+                            <f:selectItems value="#{prospectBean.prospectList}"  
+                                           var="pros"  itemLabel="#{pros.lastName}, #{pros.firstName} #{pros.middleName} #{pros.prospectNo}" 
+                                           itemValue="#{pros}"/>
+                            <f:ajax event="click"  execute="@this"  render="@form" />
+                        </h:selectOneListbox>
+                    </span>
+                </p>
+                You selected :  #{prospectBean.selectedProspect}
+                <br/>
+            </h:form>
+        </div>
+    </h:body>
+</html>

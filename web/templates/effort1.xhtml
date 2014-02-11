@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="docroot/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="docroot/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <title>Efforts</title>
+    </h:head>
+    <h:body>
+        <div id="top" class="top">
+            <ui:insert name="top">Top
+                <ui:include src="web/ProspectMessages.properties"/> 
+            </ui:insert>
+        </div>
+        <div id="content" class="center_content">
+            <ui:insert name="content">Content</ui:insert>
+            <h:form>
+                <f:ajax event="click"   execute="@this"  render="@form" >
+                    <span style="margin-left:418px;">
+                        <h:outputLabel value="Date  : " for="rprtDateEnc" />
+                        <h:inputText id="rprtDateEnc" size="10" 
+                                     required="true"
+                                     value="#{effortBean.effort.rprtDateEnc}">
+                            <f:convertDateTime type="date" pattern="MM/dd/yyyy" />
+                            <h:message for ="rprtDateEnc" />
+                        </h:inputText></span>
+                    <br/>
+                    <p>
+                        <span style="margin-left:15px;height:600px">
+                            <h:selectOneListbox id="prospectList" size="5" required="true" 
+                                                value=" #{form.lastName}">
+                                <f:selectItem itemValue="Allanigue" itemLabel="Edmundo Allanigue" />
+                                <f:selectItem itemValue="Mendoza" itemLabel="Angel Mendoza" />
+                                <f:selectItem itemValue="Jose" itemLabel="Enriqueto Jose" />
+                                <f:selectItem itemValue="Santiago" itemLabel="Celedonio Santiago" />
+                                <f:selectItem itemValue="Espiritu" itemLabel="Hortencio Espiritu" />
+                                <f:selectItem itemValue="Cabrera" itemLabel="Laurita Cabrera" />
+                                <f:selectItem itemValue="Santiago2" itemLabel="Teresita Santiago" />
+                                <f:selectItem itemValue="Allanigue2" itemLabel="Benedicto Allanigue" />
+                                <f:selectItem itemValue="Dagal" itemLabel="Gloria Dagal" />
+                                <f:selectItem itemValue="Hernandez" itemLabel="Herminio Hernandez" />
+                            </h:selectOneListbox>
+                        </span>
+                    </p>
+                    <p>
+                        <span style="margin-left:15px;">
+                            <h:inputText id ="surname" size="15" 
+                                         required="true"
+                                         value="#{form.lastName}"/>
+                        </span>
+                        <span style="margin-left:20px;">
+                            <h:inputText id="firstName" size="20" 
+                                         required="true"
+                                         value="#{prospectBean.prospect.firstName}"/></span>
+                        <span style="margin-left:20px;">
+                            <h:inputText id="middleName" size="15" 
+                                         value="#{prospectBean.prospect.middleName}"/></span>
+                        <br/>
+                        <span style="margin-left:17px;">
+                            <h:outputLabel for ="surname" value="Surname"/></span>
+                        <span style="margin-left:78px;"> 
+                            <h:outputLabel for ="firstName" value="First Name"/></span>
+                        <span style="margin-left:96px;"> 
+                            <h:outputLabel for="middleName" value="Middle Name"/></span>
+                    </p>
+                    <span style="margin-left:160px;">
+                        <h:outputLabel value="Start Date of Activity : " for="actDateFrom" />
+                        <h:inputText id="actDateFrom" size="10" 
+                                     required="true"
+                                     value="#{actBean.activity.actDateFrom}">
+                            <f:convertDateTime type="date" pattern="MM/dd/yyyy" />
+                        </h:inputText>
+                        <h:outputLabel value="End Date of Activity : " for="actDateEnd" />
+                        <h:inputText id="actDateEnd" size="10" 
+                                     required="true"
+                                     value="#{actBean.activity.actDateEnd}">
+                            <f:convertDateTime type="date" pattern="MM/dd/yyyy" />
+                        </h:inputText></span>
+                    <br/>
+                    <p>
+                        <span style="margin-left:15px;">
+                            <h:outputLabel for="report_dtl" value="Recruitment Effort Narrative"/></span>
+                        <br/>
+                        <span style="margin-left:15px;">
+                            <h:inputTextarea value="dito ka mag-type ng report" cols="100" rows="10"/></span>
+                    </p>
+                    <p>
+                        <span style="margin-left:392px;"> Rating:</span><br/>
+                        <span style="margin-left:344px;">1 </span>
+                        <span style="margin-left:20px;">2 </span>
+                        <span style="margin-left:20px;">3 </span>
+                        <span style="margin-left:20px;">4 </span>
+                        <span style="margin-left:20px;">5 </span>
+                        <br/> </p>
+                    <div id="checkboxes" style="height:180px; width:326px; margin-left:15px;float:left" >
+                        <h:selectBooleanCheckbox id="willingness" value="willingness" />  Willingness, receptiveness, and interest <br/>
+                        <h:selectBooleanCheckbox id="understanding" value="understanding" />   Understanding about the Cooperative  <br/>
+                        <span style="margin-left:50px;"> 
+                            <h:outputLabel value="Mutual help and the Cooperative Movement" for ="mutualhelp"/></span> <br/>
+                        <span style="margin-left:50px;"> 
+                            <h:outputLabel value="Introduction to Cooperative Principles" for ="principles"/> </span> <br/>
+                        <span style="margin-left:50px;"> 
+                            <h:outputLabel value="Cooperative values" for="values"/> </span> <br/>
+                        <h:selectBooleanCheckbox id="motivation" value="motivation" />   Inspiration and motivation <br/>
+                        <h:selectBooleanCheckbox id="standing" value="standing" />   Social standing  <br/>
+                        <h:selectBooleanCheckbox id="nores" value="nores" />   No result <br/>
+                    </div>
+                    <div id="radio" style="height:180px; width:217px;float:left; ">
+                        <h:selectOneRadio id="willingnessRate"  value="willingness" >
+                            <f:selectItem id="willing1" itemValue="1" />
+                            <f:selectItem id="willing2" itemValue="2" />
+                            <f:selectItem id="willing3" itemValue="3" />
+                            <f:selectItem id="willing4" itemValue="4" />
+                            <f:selectItem id="willing5"  itemValue="5" />
+                        </h:selectOneRadio>
+                        <br/>
+                        <h:selectOneRadio id="mutualHelpRate"
+                                          value="mutualHelp">
+                            <f:selectItem id="mutualHelp1" itemValue="1" />
+                            <f:selectItem id="mutualHelp2" itemValue="2" />
+                            <f:selectItem id="mutualHelp3" itemValue="3" />
+                            <f:selectItem id="mutualHelp4" itemValue="4" />
+                            <f:selectItem id="mutualHelp5" itemValue="5" />
+                        </h:selectOneRadio>             
+                        <h:selectOneRadio id="principlesRate"
+                                          value="principles">
+                            <f:selectItem id="principles1" itemValue="1" />
+                            <f:selectItem id="principles2" itemValue="2" />
+                            <f:selectItem id="principles3" itemValue="3" />
+                            <f:selectItem id="principles4" itemValue="4" />
+                            <f:selectItem id="principles5" itemValue="5" />
+                        </h:selectOneRadio>             
+                        <h:selectOneRadio id="valuesRate"
+                                          value="values">
+                            <f:selectItem id="values1" itemValue="1" />
+                            <f:selectItem id="values2" itemValue="2" />
+                            <f:selectItem id="values3" itemValue="3" />
+                            <f:selectItem id="values4" itemValue="4" />
+                            <f:selectItem id="values5" itemValue="5" />
+                        </h:selectOneRadio>            
+                        <h:selectOneRadio id="motivationRate"
+                                          value="motivation">
+                            <f:selectItem id="motivation1" itemValue="1" />
+                            <f:selectItem id="motivation2" itemValue="2" />
+                            <f:selectItem id="motivation3" itemValue="3" />
+                            <f:selectItem id="motivation4" itemValue="4" />
+                            <f:selectItem id="motivation5" itemValue="5" />
+                        </h:selectOneRadio>             
+                        <h:selectOneRadio id="standingRate"
+                                          value="motivation">
+                            <f:selectItem id="standing1" itemValue="1" />
+                            <f:selectItem id="standing2" itemValue="2" />
+                            <f:selectItem id="standing3" itemValue="3" />
+                            <f:selectItem id="standing4" itemValue="4" />
+                            <f:selectItem id="standing5" itemValue="5" />
+                        </h:selectOneRadio>       
+                    </div>
+                    <div id="legend" style="height:130px; width:150px; float:left" >
+                        <h:outputText value="Legend:" /> <br/><br/>
+                        <h:outputText value="1 - Poor" /> <br/>
+                        <h:outputText value="2 - Needs improvement" /> <br/>
+                        <h:outputText value="3 - Average" /> <br/>
+                        <h:outputText value="4 - Satisfactory" /> <br/>
+                        <h:outputText value="5 - Outstanding" /> <br/>
+                    </div>
+                    <p>
+                        <span style="margin-left:300px;">
+                            <h:inputText id="ptMem" label="PT member in charge" size="40" 
+                                         required="true"
+                                         value="#{repBean.report.memIdNo}"/></span>
+                        <br></br>
+                        <span style="margin-left:360px;">
+                            <h:outputLabel for="ptMem" value="PT Member-in-Charge"/></span>
+                    </p>
+                    <p><span style="margin-left:372px;margin-right:5px;">
+                            <h:commandButton value="  Save  " action="#{prospectBean.save}" />
+                            <h:commandButton value="Cancel" action="#{prospectBean.init}" />
+                        </span></p>
+                </f:ajax>
+            </h:form>
+        </div>
+    </h:body>
+</html>

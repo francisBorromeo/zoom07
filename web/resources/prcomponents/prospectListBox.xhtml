@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <composite:interface>
+        <composite:attribute name="selectedProspect" />
+        <composite:attribute name="prospectList" />
+        <composite:attribute name="isNotActive" />
+        <composite:attribute name="canNotBeSelected" />
+    </composite:interface>
+    <composite:implementation>
+        <p>
+            <span style="margin-left:15px;">
+                <h:outputLabel value="Prospect List"/></span>
+            <br></br>
+            <span style="margin-left:15px;">
+                <h:selectOneListbox id="pRecNo" value="#{cc.attrs.selectedProspect}" disabled="#{cc.attrs.canNotBeSelected}" readonly="#{cc.attrs.canBeSelected}"
+                                    style=" height: 116px; width: 30%; color: #000000;">
+                    <f:selectItems value="#{cc.attrs.prospectList}" 
+                                   var="recNo" itemLabel="#{recNo.lastName}, #{recNo.firstName} #{recNo.middleName}" 
+                                   itemValue="#{recNo}" />
+                </h:selectOneListbox>
+            </span>
+        </p>
+        <p><span style="margin-left:492px;">
+                <ui:insert name ="actionbutton" >
+                </ui:insert>
+            </span></p>
+    </composite:implementation>
+</html>

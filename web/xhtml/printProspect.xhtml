@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:prcc="http://java.sun.com/jsf/composite/prcomponents"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+	<ui:composition template="/templates/prospectLayout.xhtml">
+		<ui:define name="top">
+			PRINT RECORD
+		</ui:define>
+		<ui:define name="content">
+			<h:form>
+				<f:event type="preRenderView" listener="#{prospectBean.init}"/>
+				<prcc:prospectForm2 id="printform"
+									prospect="#{prospectBean.selectedProspect}" 
+									canNotInput="true"
+									isEdit="true"/>
+				<p:commandButton value="Print Record" type="button">
+					<p:printer target="printform:prospectPanel"/>
+				</p:commandButton>
+				<p:commandButton value="Cancel" action="#{prospectBean.goBackToView}" immediate="true" ajax="false"/>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</html>
