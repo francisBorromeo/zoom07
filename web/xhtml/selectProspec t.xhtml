@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:prcc="http://java.sun.com/jsf/composite/prcomponents" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/templates/prospectLayout.xhtml">
+        <ui:define name="top">
+            #{bundle.View}
+        </ui:define>
+        <ui:define name="content"> 
+            <h:form>
+                <f:event type="preRenderView" listener="#{prospectBean.init}"/>
+                <prcc:prospectForm3 prospect="#{prospectBean.selectedProspect}" 
+                                    canNotInput="false"/>
+                <h4> Prospect List </h4>
+                <p:dataTable var="pList" value="#{prospectBean.prospectList}" scrollRows="20"  
+                             scrollable="true" liveScroll="true" scrollWidth="480" 
+                             selection="#{prospectBean.selectedProspect}"
+                             rowIndexVar="rowIndex" 
+                             selectionMode="single" rowKey="#{pList.prospectNo}"
+                             scrollHeight="150" id="prospectList" >  
+                    <p:column headerText="Prospect No." width="7%" >
+                        <h:outputText value="#{pList.prospectNo}" />
+                    </p:column>
+                    <p:column headerText="Last Name" width="25" >
+                        <h:outputText value="#{pList.lastName}" />
+                    </p:column>
+                    <p:column headerText="First Name"  width="30">
+                        <h:outputText value="#{pList.firstName}" />
+                    </p:column>
+                    <p:column headerText="Middle Name"  width="30">
+                        <h:outputText value="#{pList.middleName}" />
+                    </p:column>
+                </p:dataTable>
+                <br></br>
+                <p><span style="margin-left:290px;"  >
+                        <h:commandButton value="Back " action="/xhtml/mainProspect.xhtml" immediate="true" />
+                        <h:commandButton value="Edit " action="#{prospectBean.saveEdit}" />
+                        <h:commandButton value="Delete" action="#{prospectBean.getSelectedProspect}"/>
+                        <h:commandButton value="Print " action="#{prospectBean.getSelectedProspect}" />
+                    </span> </p>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

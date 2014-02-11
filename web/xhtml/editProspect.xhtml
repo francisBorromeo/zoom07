@@ -5,7 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:prcc="http://java.sun.com/jsf/composite/prcomponents" 
       xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/templates/prospectLayout.xhtml">
         <ui:define name="top">
             #{bundle.Edit}
@@ -15,13 +15,13 @@
                 <f:event type="preRenderView" listener="#{prospectBean.init}"/>
                 <prcc:prospectForm2 prospect="#{prospectBean.selectedProspect}" 
                                     canNotInput="false"
-									isEdit="true"/>
-				<p>
-					<span style="margin-left: 640px;">
+                                    isEdit="true"/>
+                <p>
+                    <span style="margin-left: 640px;">
                         <p:commandButton value="Save " action="#{prospectBean.saveEdit}" ajax="false"/>
                         <p:commandButton value="Cancel" action="#{prospectBean.goBackToView}" immediate="true" ajax="false"/>
                     </span>
-				</p>
+                </p>
             </h:form>
         </ui:define>
     </ui:composition>
