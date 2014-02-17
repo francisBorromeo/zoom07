@@ -20,6 +20,7 @@ import org.primefaces.event.UnselectEvent;
 import service.CoopOrgUnitFacadeREST;
 import service.CoopProsReportFacadeREST;
 import service.CoopProspectFacadeREST;
+import service.CoopReportFacadeREST;
 
 /**
  *
@@ -33,6 +34,10 @@ public class ProspectBean implements Serializable {
     private CoopProspectFacadeREST coopProspectFacadeREST;
 	@EJB
 	private CoopProsReportFacadeREST coopProsReportFacadeREST;
+	@EJB
+	private CoopReportFacadeREST coopReportFacadeREST;
+	@EJB
+	private CoopOrgUnitFacadeREST coopOrgUnitFacadeREST;
     private CoopProspect prospect;
 	private CoopProsReport prosReport;
 	private CoopReport coopReport;
