@@ -54,6 +54,8 @@ public class ProspectBean implements Serializable {
 
     public void init() {
 		prospect = new CoopProspect();
+		prosReport = new CoopProsReport();
+		coopReport = new CoopReport();
         prospectList = coopProspectFacadeREST.findAll();
 		prospectModel = new ListDataModel<CoopProspect>(prospectList);
 		renderComponent = false;
@@ -152,10 +154,12 @@ public class ProspectBean implements Serializable {
 		return "viewProspect?faces-redirect=true";
 	}
 	
-	public String backToMain() {
+	public String backToMain(String page) {
 		selectedProspect = null;
-		selectedProspect = new CoopProspect();
-		return "mainProspect?faces-redirect=true";
+		setNorating(true);
+		norating = false;
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("prospectBean", null);
+		return page+"?faces-redirect=true";
 	}
 
 	public List<CoopProspect> getFilteredProspectList() {
@@ -212,6 +216,14 @@ public class ProspectBean implements Serializable {
 		motivated = false;
 		social = false;
 		this.norating = norating;
+	}
+
+	public CoopProsReport getProsReport() {
+		return prosReport;
+	}
+
+	public CoopReport getCoopReport() {
+		return coopReport;
 	}
 	
 	

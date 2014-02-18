@@ -30,23 +30,16 @@ public class EffortBean implements Serializable {
 	@EJB
 	private CoopProsReportFacadeREST effortFacade;
 	@EJB
-	private CoopProspectFacadeREST prospectFacade;
-	@EJB
-	private CoopReportFacadeREST reportFacade;
-	
-	private CoopProspect prospect;
-	private CoopProspect selectedProspect;
+	private CoopReportFacadeREST reportFacade;	
 	private CoopProsReport effort;
 	private CoopProsReport selectedEffort;
 	private CoopReport coopReport;
 	private List<CoopProspect> prospectList;
 	private List<CoopProsReport> effortList;
-	private DataModel<CoopProspect> prospectModel;
 	private DataModel<CoopProsReport> effortModel;
 	
 	@PostConstruct
 	public void initEffort() {
-		prospect = new CoopProspect();
 		effort = new CoopProsReport();
 		coopReport = new CoopReport();
 		
