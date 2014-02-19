@@ -26,7 +26,7 @@ import service.CoopReportFacadeREST;
  */
 @ManagedBean
 @SessionScoped
-public class EffortBean implements Serializable {
+public class EffortBean extends ProspectBean implements Serializable {
 	@EJB
 	private CoopProsReportFacadeREST effortFacade;
 	@EJB
@@ -34,16 +34,6 @@ public class EffortBean implements Serializable {
 	private CoopProsReport effort;
 	private CoopProsReport selectedEffort;
 	private CoopReport coopReport;
-	private List<CoopProspect> prospectList;
-	private List<CoopProsReport> effortList;
-	private DataModel<CoopProsReport> effortModel;
-	
-	@PostConstruct
-	public void initEffort() {
-		effort = new CoopProsReport();
-		coopReport = new CoopReport();
-		
-	}
 	
 	public EffortBean() {
 	}

@@ -60,8 +60,8 @@ public class ProspectBean implements Serializable {
 		prospectModel = new ListDataModel<CoopProspect>(prospectList);
 		renderComponent = false;
     }
-
-    /**
+	
+	/**
      * Creates a new instance of ProspectBean
      */
     public ProspectBean() {

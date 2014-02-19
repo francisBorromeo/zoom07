@@ -12,11 +12,10 @@
         </ui:define>
         <ui:define name="content">
             <h:form id="encodeEffortForm">
-                <f:event type="preRenderView" listener="#{prospectBean.init}"/>
-                <aui:fieldset>
-                    <h:outputText value="Prospect List"/>
+                <f:event type="preRenderView" listener="#{effortBean.init}"/>
+                <p:fieldset legend="Prospect List">
                     <p:dataTable id="prosListEffort"
-                                 value="#{prospectBean.prospectModel}"
+                                 value="#{effortBean.prospectModel}"
                                  var="pList"
                                  rowKey="#{pList.prospectNo}"
                                  sortBy="#{pList.lastName}"
@@ -27,15 +26,15 @@
                                  style="width: 480px"
                                  liveScroll="true"
                                  selectionMode="single"
-                                 selection="#{prospectBean.selectedProspect}"
-                                 filteredValue="#{prospectBean.filteredProspectList}"
-								 disabledSelection="#{not empty prospectBean.selectedProspect.prospectNo}">
+                                 selection="#{effortBean.selectedProspect}"
+                                 filteredValue="#{effortBean.filteredProspectList}"
+								 disabledSelection="#{not empty effortBean.selectedProspect.prospectNo}">
                         <p:ajax event="rowSelect"
                                 async="true"
                                 update=":encodeEffortForm"/>
                         <p:ajax event="rowUnselect"
                                 async="true"
-                                listener="#{prospectBean.onRowUnselect}"
+                                listener="#{effortBean.onRowUnselect}"
                                 update=":encodeEffortForm"/>
                         <p:column headerText="Prospect No."
                                   style="width: 19%"
@@ -69,59 +68,60 @@
                         <aui:column>
                             <h:outputText id="lastNameText"
                                           style=" font-size: 2em"
-                                          value="#{prospectBean.selectedProspect.lastName},"
-										  rendered="#{not empty prospectBean.selectedProspect.prospectNo}"/>
+                                          value="#{effortBean.selectedProspect.lastName},"
+										  rendered="#{not empty effortBean.selectedProspect.prospectNo}"/>
                         </aui:column>
                         <aui:column>
                             <h:outputText id="firstNameText"
                                           style=" font-size: 2em"
-                                          value="#{prospectBean.selectedProspect.firstName}"/>
+                                          value="#{effortBean.selectedProspect.firstName}"/>
                         </aui:column>
                         <aui:column>
                             <h:outputText id="middleNameText"
                                           style=" font-size: 2em"
-                                          value="#{prospectBean.selectedProspect.middleName}"/>
+                                          value="#{effortBean.selectedProspect.middleName}"/>
                         </aui:column>
                     </aui:field>
-                </aui:fieldset>
-                <aui:fieldset id="rateFieldset" rendered="#{not empty prospectBean.selectedProspect.prospectNo}">
+                </p:fieldset>
+                <p:fieldset rendered="#{not empty effortBean.selectedProspect.prospectNo}"
+							legend="Encode Effort">
                     <h:outputText value="Narrative"/>
                     <aui:field>
                         <p:editor id="effortSummary"
-								  value="#{prospectBean.coopReport.reportDtl}"
+								  value="#{effortBean.coopReport.reportDtl}"
 								  style=" width: 50%"/>
                     </aui:field>
                     <aui:field id="rateField">
                         <p:panelGrid columns="3">
-                            <p:selectBooleanCheckbox id="willingbox" value="#{prospectBean.willing}">
+                            <p:selectBooleanCheckbox id="willingbox" value="#{effortBean.willing}">
                                 <p:ajax async="true"
-                                        update=":encodeEffortForm:rateFieldset:rating1,
-										:encodeEffortForm:rateFieldset:noratingbox"/>
+                                        update=":encodeEffortForm:rating1,
+										:encodeEffortForm:noratingbox"/>
                             </p:selectBooleanCheckbox>
                             <p:outputLabel for="rating1" value="Willingness, receptiveness, and interest."/>
                             <p:selectOneRadio id="rating1"
-											  value="#{prospectBean.prosReport.willingnessRating}"
-											  disabled="#{not prospectBean.willing}">
+											  value="#{effortBean.prosReport.willingnessRating}"
+											  disabled="#{not effortBean.willing}">
                                 <f:selectItem itemLabel="1" itemValue="1"/>
                                 <f:selectItem itemLabel="2" itemValue="2"/>
                                 <f:selectItem itemLabel="3" itemValue="3"/>
                                 <f:selectItem itemLabel="4" itemValue="4"/>
                                 <f:selectItem itemLabel="5" itemValue="5"/>
                             </p:selectOneRadio>
-                            <p:selectBooleanCheckbox id="understandingbox" value="#{prospectBean.understanding}">
+                            <p:selectBooleanCheckbox id="understandingbox" value="#{effortBean.understanding}">
                                 <p:ajax async="true"
-                                        update=":encodeEffortForm:rateFieldset:rating2-1,
-										:encodeEffortForm:rateFieldset:rating2-2,
-										:encodeEffortForm:rateFieldset:rating2-3,
-										:encodeEffortForm:rateFieldset:noratingbox"/>
+                                        update=":encodeEffortForm:rating2-1,
+										:encodeEffortForm:rating2-2,
+										:encodeEffortForm:rating2-3,
+										:encodeEffortForm:noratingbox"/>
                             </p:selectBooleanCheckbox>
                             <h:outputText value="Understanding about cooperative."/>
                             <h:outputText value=" "/>
                             <h:outputText value=" "/>
                             <p:outputLabel for="rating2-1" value="Mutual help and cooperative movement."/>
                             <p:selectOneRadio id="rating2-1"
-											  value="#{prospectBean.prosReport.understandingRating}"
-											  disabled="#{not prospectBean.understanding}">
+											  value="#{effortBean.prosReport.understandingRating}"
+											  disabled="#{not effortBean.understanding}">
                                 <f:selectItem itemLabel="1" itemValue="1"/>
                                 <f:selectItem itemLabel="2" itemValue="2"/>
                                 <f:selectItem itemLabel="3" itemValue="3"/>
@@ -131,8 +131,8 @@
                             <h:outputText value=" "/>
                             <p:outputLabel for="rating2-2" value="Introduction to cooperative principles."/>
                             <p:selectOneRadio id="rating2-2"
-											  value="#{prospectBean.prosReport.understandingRating}"
-											  disabled="#{not prospectBean.understanding}">
+											  value="#{effortBean.prosReport.understandingRating}"
+											  disabled="#{not effortBean.understanding}">
                                 <f:selectItem itemLabel="1" itemValue="1"/>
                                 <f:selectItem itemLabel="2" itemValue="2"/>
                                 <f:selectItem itemLabel="3" itemValue="3"/>
@@ -142,73 +142,76 @@
                             <h:outputText value=" "/>
                             <p:outputLabel for="rating2-3" value="Cooperative Values."/>
                             <p:selectOneRadio id="rating2-3"
-											  value="#{prospectBean.prosReport.understandingRating}"
-											  disabled="#{not prospectBean.understanding}">
+											  value="#{effortBean.prosReport.understandingRating}"
+											  disabled="#{not effortBean.understanding}">
                                 <f:selectItem itemLabel="1" itemValue="1"/>
                                 <f:selectItem itemLabel="2" itemValue="2"/>
                                 <f:selectItem itemLabel="3" itemValue="3"/>
                                 <f:selectItem itemLabel="4" itemValue="4"/>
                                 <f:selectItem itemLabel="5" itemValue="5"/>
                             </p:selectOneRadio>
-                            <p:selectBooleanCheckbox id="inspirationbox" value="#{prospectBean.motivated}">
+                            <p:selectBooleanCheckbox id="inspirationbox" value="#{effortBean.motivated}">
                                 <p:ajax async="true"
-                                        update=":encodeEffortForm:rateFieldset:rating3,
-										:encodeEffortForm:rateFieldset:noratingbox"/>
+                                        update=":encodeEffortForm:rating3,
+										:encodeEffortForm:noratingbox"/>
                             </p:selectBooleanCheckbox>
                             <p:outputLabel for="rating3" value="Inspiration and motivation."/>
                             <p:selectOneRadio id="rating3"
-											  value="#{prospectBean.prosReport.inspirationRating}"
-											  disabled="#{not prospectBean.motivated}">
+											  value="#{effortBean.prosReport.inspirationRating}"
+											  disabled="#{not effortBean.motivated}">
                                 <f:selectItem itemLabel="1" itemValue="1"/>
                                 <f:selectItem itemLabel="2" itemValue="2"/>
                                 <f:selectItem itemLabel="3" itemValue="3"/>
                                 <f:selectItem itemLabel="4" itemValue="4"/>
                                 <f:selectItem itemLabel="5" itemValue="5"/>
                             </p:selectOneRadio>
-                            <p:selectBooleanCheckbox id="socialbox" value="#{prospectBean.social}">
+                            <p:selectBooleanCheckbox id="socialbox" value="#{effortBean.social}">
                                 <p:ajax async="true"
-                                        update=":encodeEffortForm:rateFieldset:rating4,
-										:encodeEffortForm:rateFieldset:noratingbox"/>
+                                        update=":encodeEffortForm:rating4,
+										:encodeEffortForm:noratingbox"/>
                             </p:selectBooleanCheckbox>
                             <p:outputLabel for="rating4" value="Social standing."/>
                             <p:selectOneRadio id="rating4"
-											  value="#{prospectBean.prosReport.socialRating}"
-											  disabled="#{not prospectBean.social}">
+											  value="#{effortBean.prosReport.socialRating}"
+											  disabled="#{not effortBean.social}">
                                 <f:selectItem itemLabel="1" itemValue="1"/>
                                 <f:selectItem itemLabel="2" itemValue="1"/>
                                 <f:selectItem itemLabel="3" itemValue="1"/>
                                 <f:selectItem itemLabel="4" itemValue="1"/>
                                 <f:selectItem itemLabel="5" itemValue="1"/>
                             </p:selectOneRadio>	
-                            <p:selectBooleanCheckbox id="noratingbox" value="#{prospectBean.norating}">
+                            <p:selectBooleanCheckbox id="noratingbox" value="#{effortBean.norating}">
                                 <p:ajax async="true"
-                                        update=":encodeEffortForm:rateFieldset:willingbox,
-										:encodeEffortForm:rateFieldset:understandingbox,
-										:encodeEffortForm:rateFieldset:inspirationbox,
-										:encodeEffortForm:rateFieldset:socialbox,
-										:encodeEffortForm:rateFieldset:rating1,
-										:encodeEffortForm:rateFieldset:rating2-1,
-										:encodeEffortForm:rateFieldset:rating2-2,
-										:encodeEffortForm:rateFieldset:rating2-3,
-										:encodeEffortForm:rateFieldset:rating3,
-										:encodeEffortForm:rateFieldset:rating4"/>
+                                        update=":encodeEffortForm:willingbox,
+										:encodeEffortForm:understandingbox,
+										:encodeEffortForm:inspirationbox,
+										:encodeEffortForm:socialbox,
+										:encodeEffortForm:rating1,
+										:encodeEffortForm:rating2-1,
+										:encodeEffortForm:rating2-2,
+										:encodeEffortForm:rating2-3,
+										:encodeEffortForm:rating3,
+										:encodeEffortForm:rating4"/>
                             </p:selectBooleanCheckbox>
                             <h:outputText value="No rating."/>
                         </p:panelGrid>
                     </aui:field>
-				</aui:fieldset>
+				</p:fieldset>
 				<aui:field>
 					<p:commandButton id="goBack"
 									 value="Go back to main..."
-									 action="#{prospectBean.backToMain('/xhtml/prospectEffort.xhtml')}"
+									 action="#{effortBean.backToMain('/xhtml/prospectEffort.xhtml')}}"
 									 ajax="false"
-									 rendered="#{empty prospectBean.selectedProspect.prospectNo}"
+									 rendered="#{empty effortBean.selectedProspect.prospectNo}"
 									 immediate="true"/>
+					<p:commandButton id="saveEffort"
+									 value=""
+									 />
 					<p:commandButton id="cancelEncode"
-									 type="button"
 									 value="Cancel"
-									 action="#{prospectBean.backToMain('/xhtml/addEffort.xhtml')}"
-									 rendered="#{not empty prospectBean.selectedProspect.prospectNo}"
+									 action="#{effortBean.backToMain('/xhtml/addEffort.xhtml')}"
+									 update=":encodeEffortForm"
+									 rendered="#{not empty effortBean.selectedProspect.prospectNo}"
 									 immediate="true"/>
 				</aui:field>
             </h:form>
