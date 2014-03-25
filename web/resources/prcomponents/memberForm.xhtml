@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+	  xmlns:aui="http://liferay.com/faces/aui">
+	<composite:interface id="meminterface">
+		<composite:attribute name="formheader"/>
+		<composite:attribute name="entity"/>
+		<composite:attribute name="isedit"/>
+		<composite:attribute name="noinput"/>
+	</composite:interface>
+	<composite:implementation id="memimplement">
+		<aui:fieldset id="memfildset">
+			<aui:field id="membershipDate">
+				<p:calendar id="membershipDate"/>
+				<p:outputLabel id="memDateLabel" for=""/>
+			</aui:field>
+		</aui:fieldset>
+	</composite:implementation>
+</html>
+

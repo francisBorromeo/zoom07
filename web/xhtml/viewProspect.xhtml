@@ -71,7 +71,7 @@
                 <h:outputText id="prompttext" value="Select from list of prospects above..." rendered="#{empty prospectBean.selectedProspect.prospectNo}"/><br/>
                 <p:commandButton id="goBack"
                                  value="Go back to main..."
-                                 action="#{prospectBean.backToMain}"
+                                 action="#{prospectBean.backToMain('/xhtml/mainProspect.xhtml')}"
                                  ajax="false"
                                  immediate="true"/>
                 <p:commandButton id="editbutton" 

@@ -9,8 +9,11 @@ package model;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -54,7 +57,7 @@ public class CoopProsReport implements Serializable {
     @Column(name = "pros_rep_recno", nullable = false, length = 4)
 	private String prosRepRecno;
 	@JoinColumn(name = "report_num", referencedColumnName = "report_num")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
 	private CoopReport reportNum;
 	@JoinColumn(name = "prospect_no", referencedColumnName = "prospect_no")
     @ManyToOne

@@ -42,6 +42,45 @@ public class ApplicationConfig extends Application {
 		// following code can be used to customize Jersey 1.x JSON provider:
 		// following code can be used to customize Jersey 1.x JSON provider:
 		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
 		try {
 			Class jacksonProvider = Class.forName("org.codehaus.jackson.jaxrs.JacksonJsonProvider");
 			resources.add(jacksonProvider);

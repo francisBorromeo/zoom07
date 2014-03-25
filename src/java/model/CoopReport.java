@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -63,7 +64,7 @@ public class CoopReport implements Serializable {
     @Column(name = "report_date_encoded", nullable = false)
     @Temporal(TemporalType.DATE)
 	private Date reportDateEncoded;
-	@OneToMany(mappedBy = "reportNum")
+	@OneToMany(mappedBy = "reportNum", cascade = CascadeType.PERSIST)
 	private Collection<CoopProsReport> coopProsReportCollection;
 	@JoinColumn(name = "report_type_code", referencedColumnName = "report_type_code")
     @ManyToOne

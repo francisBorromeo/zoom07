@@ -15,7 +15,7 @@
                     <file>${libs.Portlet-2.0-Lib.classpath}</file>
                 </library>
                 <library dirs="200">
-                    <file>${libs.Liferay Faces 3.1 GA4.classpath}</file>
+                    <file>${libs.LiferayFaces 3.2.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
