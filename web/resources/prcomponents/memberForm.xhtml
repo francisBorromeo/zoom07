@@ -14,11 +14,30 @@
 	</composite:interface>
 	<composite:implementation id="memimplement">
 		<aui:fieldset id="memfildset">
-			<aui:field id="membershipDate">
-				<p:calendar id="membershipDate"/>
-				<p:outputLabel id="memDateLabel" for=""/>
+			<aui:field id="memDateFld">
+				<p:calendar id="membershipDate" value="#{cc.attrs.memDate}"/>
+				<p:outputLabel id="memDateLabel" for="membershipDate" value="#{bundle.memDate}"/>
+			</aui:field>
+			<aui:field id="ptFld">
+				<p:selectOneMenu id="ptNo" value="#{cc.attrs.ouCode}" converter="#{objStrConv}">
+					<f:selectItems value="#{memberBean.ptOnly}" var="member" itemLabel="#{member.ouName}" itemValue="#{member}" noSelectionValue="Select an organization unit..."/>
+				</p:selectOneMenu>
+				<p:outputLabel id="ptLabel" for="ptNo"/>
+			</aui:field>
+			<aui:field id="memStatFld">
+				<p:selectOneMenu id="memberStat" value="#{cc.attrs.memStatus}">
+					<f:selectItem itemLabel="Good" itemValue="GOOD" />
+					<f:selectItem itemLabel="Not Good" itemValue="NO_GOOD"/>
+					<f:selectItem itemLabel="Suspended" itemValue="SUSPENDED"/>
+					<f:selectItem itemLabel="Expelled" itemValue="EXPELLED"/>
+					<f:selectItem itemLabel="Withdrawn" itemValue="WITHDRAWN"/>
+				</p:selectOneMenu>
+				<p:outputLabel id="memStatLabel" for="memberStat" value="#{bundle.memStat}"/>
 			</aui:field>
 		</aui:fieldset>
+		<aui:field id="acctNoFld">
+			<p:inputMask id="acctNo" mask="99-99999" value="#{cc.attrs.scAcctno}"/>
+			<p:outputLabel id="acctNoLabel" for="acctNo" value="#{bundle.acctNo}"/>
+		</aui:field>
 	</composite:implementation>
 </html>
-

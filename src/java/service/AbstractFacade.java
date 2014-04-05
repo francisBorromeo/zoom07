@@ -6,6 +6,7 @@ package service;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import model.CoopOrgUnit;
 
 /**
  *
@@ -41,6 +42,13 @@ public abstract class AbstractFacade<T> {
         cq.select(cq.from(entityClass));
         return getEntityManager().createQuery(cq).getResultList();
     }
+	
+	public List<T> findStrings(String col, String wher) {
+		return (List<T>) getEntityManager().createQuery(
+				"select * from " + entityClass.getSimpleName() + " where " + col + " like '" + wher + "'")
+				.getResultList();
+	}
+
 
     public List<T> findRange(int[] range) {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
