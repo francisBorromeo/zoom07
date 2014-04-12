@@ -39,5 +39,34 @@
 			<p:inputMask id="acctNo" mask="99-99999" value="#{cc.attrs.scAcctno}"/>
 			<p:outputLabel id="acctNoLabel" for="acctNo" value="#{bundle.acctNo}"/>
 		</aui:field>
+		<aui:field id="memNoFld">
+			<p:inputText id="memNo" maxlength="10" value="#{cc.attrs.memIdNo}"/>
+			<p:outputLabel id="memNoLabel" for="memNo" value="#{bundle.memNo}"/>
+		</aui:field>
+		<aui:field id="photoFld">
+			<p:fileUpload id="pixnood" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+		</aui:field>
+		<aui:field id="lNamFld">
+			<p:inputText id="lastName" value="#{cc.attrs.lastName}" maxlength="20"/>
+			<p:outputLabel id="lastNameLabel" for="lastName" value="#{bundle.lastName}"/>
+		</aui:field>
+		<aui:field id="fNameFld">
+			<p:inputText id="firstName" value="#{cc.attrs.firstName}" maxlength="25"/>
+			<p:outputLabel id="firstNameLabel" for="firstName" value="#{bundle.firstName}"/>
+		</aui:field>
+		<aui:field id="mNamFld">
+			<p:inputText id="middleName" value="#{cc.attrs.middleName}" maxlength="20"/>
+			<p:outputLabel id="middleNameLabel" for="middleName" value="#{bundle.middleName}"/>
+		</aui:field>
+		<aui:field id="nickFld">
+			<p:inputText id="nickName" value="#{cc.attrs.nickname}" maxlength="15"/>
+			<p:outputLabel id="nickNameLabel" for="nickName" value="#{bundle.nickName}"/>
+		</aui:field>
+		<aui:field id="heightFld">
+			<p:inputMask title="feet and inches" mask="9'99\"" value="#{memberBean}"/>
+		</aui:field>
+		<aui:field id="weightFld">
+			<p:inputMask id="weight" title="kilograms" mask="999.99" value="#{memberBean.member.weight}"/>
+		</aui:field>
 	</composite:implementation>
 </html>
