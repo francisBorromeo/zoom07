@@ -57,6 +57,15 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "CoopProspect.findByRecommended", query = "SELECT c FROM CoopProspect c WHERE c.recommended = :recommended"),
     @NamedQuery(name = "CoopProspect.findByForEvaluation", query = "SELECT c FROM CoopProspect c WHERE c.forEvaluation = :forEvaluation")})
 public class CoopProspect implements Serializable {
+	@Basic(optional = false)
+    @NotNull
+    @Column(name = "gender")
+	private Character gender;
+	@Column(name = "pros_stat")
+	private Character prosStat;
+	@JoinColumn(name = "ou_recno", referencedColumnName = "ou_recno")
+    @ManyToOne
+	private CoopOrgUnit ouRecno;
 	@OneToMany(mappedBy = "prospectNo")
 	private Collection<CoopProsAct> coopProsActCollection;
 	@OneToMany(mappedBy = "prospectNo")
@@ -82,10 +91,6 @@ public class CoopProspect implements Serializable {
     @Size(max = 20)
     @Column(name = "middle_name")
     private String middleName;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "gender")
-    private char gender;
     @Column(name = "birthdate")
     @Temporal(TemporalType.DATE)
     private Date birthdate;
@@ -191,13 +196,6 @@ public class CoopProspect implements Serializable {
         this.middleName = middleName;
     }
 
-    public char getGender() {
-        return gender;
-    }
-
-    public void setGender(char gender) {
-        this.gender = gender;
-    }
 
     public Date getBirthdate() {
         return birthdate;
@@ -385,6 +383,30 @@ public class CoopProspect implements Serializable {
 
 	public void setCoopProsLogCollection(Collection<CoopProsLog> coopProsLogCollection) {
 		this.coopProsLogCollection = coopProsLogCollection;
+	}
+
+	public Character getGender() {
+		return gender;
+	}
+
+	public void setGender(Character gender) {
+		this.gender = gender;
+	}
+
+	public Character getProsStat() {
+		return prosStat;
+	}
+
+	public void setProsStat(Character prosStat) {
+		this.prosStat = prosStat;
+	}
+
+	public CoopOrgUnit getOuRecno() {
+		return ouRecno;
+	}
+
+	public void setOuRecno(CoopOrgUnit ouRecno) {
+		this.ouRecno = ouRecno;
 	}
     
 }

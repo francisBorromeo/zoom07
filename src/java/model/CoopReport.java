@@ -44,6 +44,12 @@ import javax.xml.bind.annotation.XmlTransient;
 	@NamedQuery(name = "CoopReport.findByReportDateTo", query = "SELECT c FROM CoopReport c WHERE c.reportDateTo = :reportDateTo"),
 	@NamedQuery(name = "CoopReport.findByReportDateEncoded", query = "SELECT c FROM CoopReport c WHERE c.reportDateEncoded = :reportDateEncoded")})
 public class CoopReport implements Serializable {
+	@JoinColumn(name = "ou_recno", referencedColumnName = "ou_recno")
+    @ManyToOne
+	private CoopOrgUnit ouRecno;
+	@JoinColumn(name = "mem_no", referencedColumnName = "mem_no")
+    @ManyToOne
+	private CoopMember memNo;
 	private static final long serialVersionUID = 1L;
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -184,6 +190,22 @@ public class CoopReport implements Serializable {
 	@Override
 	public String toString() {
 		return "model.CoopReport[ reportNum=" + reportNum + " ]";
+	}
+
+	public CoopOrgUnit getOuRecno() {
+		return ouRecno;
+	}
+
+	public void setOuRecno(CoopOrgUnit ouRecno) {
+		this.ouRecno = ouRecno;
+	}
+
+	public CoopMember getMemNo() {
+		return memNo;
+	}
+
+	public void setMemNo(CoopMember memNo) {
+		this.memNo = memNo;
 	}
 	
 }

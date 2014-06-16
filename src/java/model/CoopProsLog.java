@@ -39,6 +39,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 	@NamedQuery(name = "CoopProsLog.findByOldValue", query = "SELECT c FROM CoopProsLog c WHERE c.oldValue = :oldValue"),
 	@NamedQuery(name = "CoopProsLog.findByNewValue", query = "SELECT c FROM CoopProsLog c WHERE c.newValue = :newValue")})
 public class CoopProsLog implements Serializable {
+	@Size(max = 8)
+    @Column(name = "user_id")
+	private String userId;
 	private static final long serialVersionUID = 1L;
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -150,6 +153,14 @@ public class CoopProsLog implements Serializable {
 	@Override
 	public String toString() {
 		return "model.CoopProsLog[ chLogno=" + chLogno + " ]";
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	
 }

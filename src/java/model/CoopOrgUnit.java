@@ -6,14 +6,19 @@ package model;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -33,6 +38,17 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "CoopOrgUnit.findByManages", query = "SELECT c FROM CoopOrgUnit c WHERE c.manages = :manages"),
     @NamedQuery(name = "CoopOrgUnit.findByManagedBy", query = "SELECT c FROM CoopOrgUnit c WHERE c.managedBy = :managedBy")})
 public class CoopOrgUnit implements Serializable {
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ou_recno")
+	private Integer ouRecno;
+	@Column(name = "ou_date_start")
+    @Temporal(TemporalType.DATE)
+	private Date ouDateStart;
+	@Column(name = "ou_date_end")
+    @Temporal(TemporalType.DATE)
+	private Date ouDateEnd;
 	@OneToMany(mappedBy = "ouCode")
 	private Collection<CoopApplicant> coopApplicantCollection;
 	@OneToMany(mappedBy = "ouCode")
@@ -163,6 +179,59 @@ public class CoopOrgUnit implements Serializable {
 
 	public void setCoopReportCollection(Collection<CoopReport> coopReportCollection) {
 		this.coopReportCollection = coopReportCollection;
+	}
+
+	public CoopOrgUnit(Integer ouRecno) {
+		this.ouRecno = ouRecno;
+	}
+
+	public Integer getOuRecno() {
+		return ouRecno;
+	}
+
+	public void setOuRecno(Integer ouRecno) {
+		this.ouRecno = ouRecno;
+	}
+
+	public Date getOuDateStart() {
+		return ouDateStart;
+	}
+
+	public void setOuDateStart(Date ouDateStart) {
+		this.ouDateStart = ouDateStart;
+	}
+
+	public Date getOuDateEnd() {
+		return ouDateEnd;
+	}
+
+	public void setOuDateEnd(Date ouDateEnd) {
+		this.ouDateEnd = ouDateEnd;
+	}
+
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (ouRecno != null ? ouRecno.hashCode() : 0);
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not set
+		if (!(object instanceof CoopOrgUnit)) {
+			return false;
+		}
+		CoopOrgUnit other = (CoopOrgUnit) object;
+		if ((this.ouRecno == null && other.ouRecno != null) || (this.ouRecno != null && !this.ouRecno.equals(other.ouRecno))) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "model.CoopOrgUnit[ ouRecno=" + ouRecno + " ]";
 	}
     
 }

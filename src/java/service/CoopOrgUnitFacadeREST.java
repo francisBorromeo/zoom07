@@ -44,20 +44,20 @@ public class CoopOrgUnitFacadeREST extends AbstractFacade<CoopOrgUnit> {
 	@PUT
     @Path("{id}")
     @Consumes({"application/xml", "application/json"})
-	public void edit(@PathParam("id") String id, CoopOrgUnit entity) {
+	public void edit(@PathParam("id") Integer id, CoopOrgUnit entity) {
 		super.edit(entity);
 	}
 
 	@DELETE
     @Path("{id}")
-	public void remove(@PathParam("id") String id) {
+	public void remove(@PathParam("id") Integer id) {
 		super.remove(super.find(id));
 	}
 
 	@GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-	public CoopOrgUnit find(@PathParam("id") String id) {
+	public CoopOrgUnit find(@PathParam("id") Integer id) {
 		return super.find(id);
 	}
 
@@ -74,7 +74,7 @@ public class CoopOrgUnitFacadeREST extends AbstractFacade<CoopOrgUnit> {
 	public List<CoopOrgUnit> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
 		return super.findRange(new int[]{from, to});
 	}
-	
+
 	@GET
     @Path("count")
     @Produces("text/plain")

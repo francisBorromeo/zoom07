@@ -58,6 +58,25 @@ import javax.xml.bind.annotation.XmlTransient;
 	@NamedQuery(name = "CoopApplicant.findByApplicantStatRem", query = "SELECT c FROM CoopApplicant c WHERE c.applicantStatRem = :applicantStatRem"),
 	@NamedQuery(name = "CoopApplicant.findByResidentSince", query = "SELECT c FROM CoopApplicant c WHERE c.residentSince = :residentSince")})
 public class CoopApplicant implements Serializable {
+	@Basic(optional = false)
+    @NotNull
+    @Column(name = "gender")
+	private Character gender;
+	@Basic(optional = false)
+    @NotNull
+    @Column(name = "application_stat")
+	private Character applicationStat;
+	@Size(max = 12)
+    @Column(name = "primary_contact_no")
+	private String primaryContactNo;
+	@Size(max = 15)
+    @Column(name = "education")
+	private String education;
+	@Column(name = "civil_status")
+	private Character civilStatus;
+	@JoinColumn(name = "ou_recno", referencedColumnName = "ou_recno")
+    @ManyToOne
+	private CoopOrgUnit ouRecno;
 	private static final long serialVersionUID = 1L;
 	@Id
     @Basic(optional = false)
@@ -78,10 +97,6 @@ public class CoopApplicant implements Serializable {
 	@Size(max = 20)
     @Column(name = "middle_name", length = 20)
 	private String middleName;
-	@Basic(optional = false)
-    @NotNull
-    @Column(name = "gender", nullable = false)
-	private char gender;
 	@Basic(optional = false)
     @NotNull
     @Column(name = "birthdate", nullable = false)
@@ -126,10 +141,6 @@ public class CoopApplicant implements Serializable {
     @Column(name = "application_date", nullable = false)
     @Temporal(TemporalType.DATE)
 	private Date applicationDate;
-	@Basic(optional = false)
-    @NotNull
-    @Column(name = "application_stat", nullable = false)
-	private char applicationStat;
 	@Column(name = "board_action")
 	private Boolean boardAction;
 	@Size(max = 7)
@@ -202,13 +213,6 @@ public class CoopApplicant implements Serializable {
 		this.middleName = middleName;
 	}
 
-	public char getGender() {
-		return gender;
-	}
-
-	public void setGender(char gender) {
-		this.gender = gender;
-	}
 
 	public Date getBirthdate() {
 		return birthdate;
@@ -386,6 +390,54 @@ public class CoopApplicant implements Serializable {
 	@Override
 	public String toString() {
 		return "model.CoopApplicant[ applicantNo=" + applicantNo + " ]";
+	}
+
+	public Character getGender() {
+		return gender;
+	}
+
+	public void setGender(Character gender) {
+		this.gender = gender;
+	}
+
+	public Character getApplicationStat() {
+		return applicationStat;
+	}
+
+	public void setApplicationStat(Character applicationStat) {
+		this.applicationStat = applicationStat;
+	}
+
+	public String getPrimaryContactNo() {
+		return primaryContactNo;
+	}
+
+	public void setPrimaryContactNo(String primaryContactNo) {
+		this.primaryContactNo = primaryContactNo;
+	}
+
+	public String getEducation() {
+		return education;
+	}
+
+	public void setEducation(String education) {
+		this.education = education;
+	}
+
+	public Character getCivilStatus() {
+		return civilStatus;
+	}
+
+	public void setCivilStatus(Character civilStatus) {
+		this.civilStatus = civilStatus;
+	}
+
+	public CoopOrgUnit getOuRecno() {
+		return ouRecno;
+	}
+
+	public void setOuRecno(CoopOrgUnit ouRecno) {
+		this.ouRecno = ouRecno;
 	}
 	
 }

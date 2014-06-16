@@ -75,6 +75,30 @@ import javax.xml.bind.annotation.XmlTransient;
 	@NamedQuery(name = "CoopMember.findByNotifyRelation", query = "SELECT c FROM CoopMember c WHERE c.notifyRelation = :notifyRelation"),
 	@NamedQuery(name = "CoopMember.findByOwnedBusiness", query = "SELECT c FROM CoopMember c WHERE c.ownedBusiness = :ownedBusiness")})
 public class CoopMember implements Serializable {
+	@Basic(optional = false)
+    @NotNull
+    @Column(name = "gender")
+	private Character gender;
+	@Basic(optional = false)
+    @NotNull
+    @Column(name = "residence_type")
+	private Character residenceType;
+	@Basic(optional = false)
+    @NotNull
+    @Column(name = "civil_status")
+	private Character civilStatus;
+	// @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+	@Column(name = "height")
+	private Float height;
+	@Column(name = "weight")
+	private Float weight;
+	@Basic(optional = false)
+    @NotNull
+    @Column(name = "mem_status")
+	private Character memStatus;
+	@JoinColumn(name = "ou_recno", referencedColumnName = "ou_recno")
+    @ManyToOne
+	private CoopOrgUnit ouRecno;
 	private static final long serialVersionUID = 1L;
 	@Id
     @Basic(optional = false)
@@ -100,20 +124,12 @@ public class CoopMember implements Serializable {
 	private String nickname;
 	@Basic(optional = false)
     @NotNull
-    @Column(name = "gender", nullable = false)
-	private char gender;
-	@Basic(optional = false)
-    @NotNull
     @Column(name = "birthdate", nullable = false)
     @Temporal(TemporalType.DATE)
 	private Date birthdate;
 	@Size(max = 20)
     @Column(name = "birthplace", length = 20)
 	private String birthplace;
-	@Basic(optional = false)
-    @NotNull
-    @Column(name = "residence_type", nullable = false)
-	private char residenceType;
 	@Size(max = 60)
     @Column(name = "street", length = 60)
 	private String street;
@@ -131,10 +147,6 @@ public class CoopMember implements Serializable {
 	@Size(max = 50)
     @Column(name = "province", length = 50)
 	private String province;
-	@Basic(optional = false)
-    @NotNull
-    @Column(name = "civil_status", nullable = false)
-	private char civilStatus;
 	@Size(max = 12)
     @Column(name = "contact_number", length = 12)
 	private String contactNumber;
@@ -142,12 +154,6 @@ public class CoopMember implements Serializable {
 	@Size(max = 30)
     @Column(name = "email", length = 30)
 	private String email;
-	@Size(max = 3)
-    @Column(name = "height", length = 3)
-	private String height;
-	@Size(max = 3)
-    @Column(name = "weight", length = 3)
-	private String weight;
 	@Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 8)
@@ -163,10 +169,6 @@ public class CoopMember implements Serializable {
     @Column(name = "mem_date", nullable = false)
     @Temporal(TemporalType.DATE)
 	private Date memDate;
-	@Basic(optional = false)
-    @NotNull
-    @Column(name = "mem_status", nullable = false)
-	private char memStatus;
 	@Basic(optional = false)
     @NotNull
     @Column(name = "status_date", nullable = false)
@@ -298,13 +300,6 @@ public class CoopMember implements Serializable {
 		this.nickname = nickname;
 	}
 
-	public char getGender() {
-		return gender;
-	}
-
-	public void setGender(char gender) {
-		this.gender = gender;
-	}
 
 	public Date getBirthdate() {
 		return birthdate;
@@ -394,21 +389,6 @@ public class CoopMember implements Serializable {
 		this.email = email;
 	}
 
-	public String getHeight() {
-		return height;
-	}
-
-	public void setHeight(String height) {
-		this.height = height;
-	}
-
-	public String getWeight() {
-		return weight;
-	}
-
-	public void setWeight(String weight) {
-		this.weight = weight;
-	}
 
 	public String getScAcctno() {
 		return scAcctno;
@@ -627,6 +607,62 @@ public class CoopMember implements Serializable {
 	@Override
 	public String toString() {
 		return "model.CoopMember[ memIdNo=" + memIdNo + " ]";
+	}
+
+	public Character getGender() {
+		return gender;
+	}
+
+	public void setGender(Character gender) {
+		this.gender = gender;
+	}
+
+	public Character getResidenceType() {
+		return residenceType;
+	}
+
+	public void setResidenceType(Character residenceType) {
+		this.residenceType = residenceType;
+	}
+
+	public Character getCivilStatus() {
+		return civilStatus;
+	}
+
+	public void setCivilStatus(Character civilStatus) {
+		this.civilStatus = civilStatus;
+	}
+
+	public Float getHeight() {
+		return height;
+	}
+
+	public void setHeight(Float height) {
+		this.height = height;
+	}
+
+	public Float getWeight() {
+		return weight;
+	}
+
+	public void setWeight(Float weight) {
+		this.weight = weight;
+	}
+
+	public Character getMemStatus() {
+		return memStatus;
+	}
+
+	public void setMemStatus(Character memStatus) {
+		this.memStatus = memStatus;
+	}
+
+	public CoopOrgUnit getOuRecno() {
+		return ouRecno;
+	}
+
+	public void setOuRecno(CoopOrgUnit ouRecno) {
+		this.ouRecno = ouRecno;
 	}
 	
 }
