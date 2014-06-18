@@ -1,4 +1,7 @@
 zoom07
 ======
 
-Broken!!! Will update soon...
+ - crude CRUD for prospect
+ - prints in all or single
+
+Nothing astronomical.
