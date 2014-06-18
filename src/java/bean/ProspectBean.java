@@ -16,20 +16,12 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import model.CoopMember;
 import model.CoopOrgUnit;
-import model.CoopProsReport;
 import model.CoopProspect;
-import model.CoopReport;
-import model.CoopReportType;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
-import service.CoopMemberFacadeREST;
 import service.CoopOrgUnitFacadeREST;
-import service.CoopProsReportFacadeREST;
 import service.CoopProspectFacadeREST;
-import service.CoopReportFacadeREST;
-import service.CoopReportTypeFacadeREST;
 
 /**
  *
@@ -42,22 +34,9 @@ public class ProspectBean implements Serializable {
 	@EJB
 	private CoopProspectFacadeREST coopProspectFacadeREST;
 	@EJB
-	private CoopProsReportFacadeREST coopProsReportFacadeREST;
-	@EJB
-	private CoopReportFacadeREST coopReportFacadeREST;
-	@EJB
 	private CoopOrgUnitFacadeREST coopOrgUnitFacadeREST;
-	@EJB
-	private CoopMemberFacadeREST coopMemberFacadeREST;
-	@EJB
-	private CoopReportTypeFacadeREST coopReportTypeFacadeREST;
-	private CoopMember coopMember;
 	private CoopOrgUnit orgUnit;
 	private CoopProspect prospect;
-	private CoopProsReport prosReport;
-	private CoopReport coopReport;
-	private CoopReportType coopReportType;
-	private List<CoopMember> coopMemberList;
 	private List<CoopProspect> prospectList;
 	private CoopProspect selectedProspect;
 	private List<CoopProspect> filteredProspectList;
@@ -72,18 +51,10 @@ public class ProspectBean implements Serializable {
 
 	public void init() {
 		prospect = new CoopProspect();
-		prosReport = new CoopProsReport();
-		coopReport = new CoopReport();
-		coopMemberList = coopMemberFacadeREST.findAll();
 		prospectList = coopProspectFacadeREST.findAll();
 		prospectModel = new ListDataModel<CoopProspect>(prospectList);
 		renderComponent = false;
-		coopMember = coopMemberFacadeREST.find("1");
 		orgUnit = coopOrgUnitFacadeREST.find("PT01");
-		coopReportType = coopReportTypeFacadeREST.find("REC");
-		coopReport.setMemIdNo(coopMember);
-		coopReport.setOuCode(orgUnit);
-		coopReport.setReportTypeCode(coopReportType);
 	}
 
 	/**
@@ -123,16 +94,6 @@ public class ProspectBean implements Serializable {
 		return "addProspect?faces-redirect=true";
 	}
 
-	public String saveEffort() {
-		//coopReportFacadeREST.create(coopReport);
-		prosReport.setProsRepRecno(randomizeNo());
-		prosReport.setProspectNo(selectedProspect);
-		coopReportFacadeREST.create(coopReport);
-		prosReport = new CoopProsReport();
-		coopReport = new CoopReport();
-		return backToMain("/xhtml/addEffort.xhtml");
-	}
-	
 	public String randomizeNo() {
 		randomNo = 1 + (int)(Math.random() * ((9999 - 1) + 1));
 		return String.valueOf(randomNo);
@@ -258,11 +219,4 @@ public class ProspectBean implements Serializable {
 		this.norating = norating;
 	}
 
-	public CoopProsReport getProsReport() {
-		return prosReport;
-	}
-
-	public CoopReport getCoopReport() {
-		return coopReport;
-	}
 }

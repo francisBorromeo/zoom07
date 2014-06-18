@@ -24,18 +24,17 @@ public class ApplicationConfig extends Application {
      */
     private Set<Class<?>> getRestResourceClasses() {
 		Set<Class<?>> resources = new java.util.HashSet<Class<?>>();
-		resources.add(service.CoopActivityFacadeREST.class);
-		resources.add(service.CoopActivityTypeFacadeREST.class);
-		resources.add(service.CoopApplicantFacadeREST.class);
-		resources.add(service.CoopMemberFacadeREST.class);
 		resources.add(service.CoopOrgUnitFacadeREST.class);
-		resources.add(service.CoopProsActFacadeREST.class);
-		resources.add(service.CoopProsLogFacadeREST.class);
-		resources.add(service.CoopProsReportFacadeREST.class);
-		resources.add(service.CoopProsRepverFacadeREST.class);
 		resources.add(service.CoopProspectFacadeREST.class);
-		resources.add(service.CoopReportFacadeREST.class);
-		resources.add(service.CoopReportTypeFacadeREST.class);
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
+		// following code can be used to customize Jersey 1.x JSON provider:
 		// following code can be used to customize Jersey 1.x JSON provider:
 		// following code can be used to customize Jersey 1.x JSON provider:
 		// following code can be used to customize Jersey 1.x JSON provider:
